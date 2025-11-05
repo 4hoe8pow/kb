@@ -1,0 +1,25 @@
+.silver-container {
+	width: min(100%, var(--layout-max));
+	margin-left: auto;
+	margin-right: auto;
+	padding-left: clamp(1.1rem, 6vw, 2.4rem);
+	padding-right: clamp(1.1rem, 6vw, 2.4rem);
+}
+
+@media (min-width: 48rem) {
+	.silver-container {
+		padding-left: clamp(1.8rem, 4.5vw, 3rem);
+		padding-right: clamp(1.8rem, 4.5vw, 3rem);
+	}
+}
+
+.page-layout {
+	min-height: 100vh;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	gap: var(--space-silver-3);
+	padding: calc(var(--space-base) * 6)
+		clamp(calc(var(--space-base) * 1.5), 4vw, calc(var(--space-base) * 2.4))
+		calc(var(--space-base) * 5);
+}
