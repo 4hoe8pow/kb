@@ -17,7 +17,7 @@ export const HeroLead = ({
 	const subtitleClass = `${baseSubtitleClass} ${animate ? "animate-fade-blur" : ""}`;
 
 	return (
-		<div className="silver-container hero-lead">
+		<div className="silver-container py-8 md:py-12">
 			<div className="hero__title-wrapper relative w-full flex justify-center">
 				<h1
 					className={titleClass}

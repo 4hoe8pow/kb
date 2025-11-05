@@ -250,8 +250,8 @@ const recentHighlights: HighlightEntry[] = [
 
 const HistoryPage = () => {
 	return (
-		<div className="about-container">
-			<main className="about-page">
+		<div className="w-full">
+			<main className="w-full max-w-6xl mx-auto flex flex-col gap-12 px-4 sm:px-6 lg:px-8 py-8">
 				<AboutHero stats={heroStats} />
 				<PhasesSection phases={phases} />
 				<InternationalResultsSection results={asiaResults} />

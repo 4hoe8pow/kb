@@ -2,7 +2,7 @@ import { StrictMode } from "react";
 import { createRoot } from "react-dom/client";
 import "./index.css";
 
-import { HashRouter, Route, Routes } from "react-router-dom";
+import { BrowserRouter, Route, Routes } from "react-router-dom";
 import NotFound from "./components/NotFound";
 import { ThemeProvider } from "./components/theme-provider.tsx";
 import HeroPage from "./HeroPage.tsx";
@@ -16,16 +16,16 @@ if (!root) throw new Error("Root element not found");
 createRoot(root).render(
 	<StrictMode>
 		<ThemeProvider defaultTheme="dark" storageKey="vite-ui-theme">
-			<HashRouter>
+			<BrowserRouter>
 				<Routes>
 					<Route element={<Layout />}>
+						<Route index element={<HeroPage />} />
 						<Route path="how-to-play" element={<HowToPlayPage />} />
 						<Route path="history" element={<HisroryPage />} />
 						<Route path="*" element={<NotFound />} />
-						<Route index element={<HeroPage />} />
 					</Route>
 				</Routes>
-			</HashRouter>
+			</BrowserRouter>
 		</ThemeProvider>
 	</StrictMode>,
 );

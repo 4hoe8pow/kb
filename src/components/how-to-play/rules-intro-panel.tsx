@@ -20,19 +20,30 @@ export const RulesIntroPanel = (props: RulesIntroPanelProps) => {
 		<section
 			ref={scrollFade.ref}
 			data-scroll-fade
-			className={`scroll-fade${scrollFade.visible ? " scroll-fade--visible" : ""} rules-intro-panel silver-container w-full`}
+			className={`scroll-fade${scrollFade.visible ? " scroll-fade--visible" : ""} silver-container w-full rounded-[28px] bg-white/90 border-t border-b border-gray-200 p-6 shadow-2xl`}
 		>
-			<div className="rules-intro-content">
-				<div className="rules-intro-copy">
-					<p className="accent-label">{accentLabel}</p>
-					<h2 className="rules-intro-title">{title}</h2>
-					<p className="rules-intro-text">{copy}</p>
+			<div className="flex flex-col md:flex-row items-start gap-6">
+				<div className="flex-1">
+					<p className="text-xs uppercase tracking-widest text-gray-500">
+						{accentLabel}
+					</p>
+					<h2 className="mt-2 text-2xl md:text-3xl font-extrabold text-gray-900">
+						{title}
+					</h2>
+					<p className="mt-3 text-base text-gray-700">{copy}</p>
 				</div>
-				<div className="rules-intro-stats">
+				<div className="flex gap-4 mt-4 md:mt-0">
 					{stats.map((stat) => (
-						<div key={stat.label} className="rules-stat">
-							<span className="rules-stat-value">{stat.value}</span>
-							<span className="rules-stat-label">{stat.label}</span>
+						<div
+							key={stat.label}
+							className="flex flex-col gap-1 p-3 rounded-lg border border-gray-100 bg-white shadow-sm min-w-[120px]"
+						>
+							<span className="text-2xl md:text-3xl font-bold text-gray-900">
+								{stat.value}
+							</span>
+							<span className="text-xs uppercase tracking-wide text-gray-500">
+								{stat.label}
+							</span>
 						</div>
 					))}
 				</div>

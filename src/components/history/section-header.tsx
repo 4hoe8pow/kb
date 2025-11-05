@@ -6,10 +6,14 @@ export type SectionHeaderProps = {
 
 export const SectionHeader = ({ kicker, title, intro }: SectionHeaderProps) => {
 	return (
-		<div className="about-hero-panel">
-			<p className="about-section-kicker">{kicker}</p>
-			<h2 className="about-hero-title">{title}</h2>
-			<p className="about-section-intro">{intro}</p>
+		<div className="mb-4">
+			<p className="text-sm uppercase tracking-widest text-gray-500">
+				{kicker}
+			</p>
+			<h2 className="mt-1 text-2xl md:text-3xl font-extrabold text-gray-900">
+				{title}
+			</h2>
+			<p className="mt-2 text-base text-gray-600">{intro}</p>
 		</div>
 	);
 };

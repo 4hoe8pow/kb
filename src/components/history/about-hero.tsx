@@ -50,26 +50,34 @@ export const AboutHero = ({ stats }: AboutHeroProps) => {
 	}, []);
 
 	return (
-		<header className="about-hero">
-			<div className="about-hero-panel">
-				<p className="about-hero-kicker">Kabaddi in Japan</p>
-				<h1 className="about-hero-title">日本カバディ史の概要</h1>
-				<p className="about-hero-description">
+		<header className="relative grid gap-6 p-6 rounded-2xl bg-white/90 border border-gray-200">
+			<div>
+				<p className="text-sm uppercase tracking-widest text-gray-500">
+					Kabaddi in Japan
+				</p>
+				<h1 className="mt-1 text-2xl md:text-3xl font-extrabold text-gray-900">
+					日本カバディ史の概要
+				</h1>
+				<p className="mt-2 text-base text-gray-600">
 					1970年代後半の展示試合から2020年代の国際タイトルまで、日本でのカバディ導入と普及の流れを年代別に整理します。
 				</p>
 			</div>
-			<div className="about-hero-stats" aria-live="off">
-				<div className="about-hero-stats-track" ref={statsTrackRef}>
+			<div className="overflow-hidden py-3" aria-live="off">
+				<div className="flex gap-4 w-max" ref={statsTrackRef}>
 					{loopingStats.map((stat, index) => (
 						<div
 							key={`${stat.value}-${index}`}
-							className="about-stat-card"
-							style={{ "--stat-card-bg": stat.color } as React.CSSProperties}
+							className="flex flex-col gap-2 p-4 rounded-lg border border-gray-200 bg-white shadow-sm min-w-[160px]"
+							style={{ backgroundColor: stat.color }}
 							aria-hidden={index >= uniqueStats.length}
 						>
-							<span className="about-stat-value">{stat.value}</span>
-							<span className="about-stat-label">{stat.label}</span>
-							<p className="about-stat-detail">{stat.detail}</p>
+							<span className="text-2xl md:text-3xl font-bold text-gray-900">
+								{stat.value}
+							</span>
+							<span className="text-xs uppercase tracking-wide text-gray-600">
+								{stat.label}
+							</span>
+							<p className="mt-1 text-sm text-gray-700">{stat.detail}</p>
 						</div>
 					))}
 				</div>
