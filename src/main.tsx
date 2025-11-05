@@ -5,8 +5,8 @@ import "./index.css";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import NotFound from "./components/NotFound";
 import { ThemeProvider } from "./components/theme-provider.tsx";
-import HeroPage from "./HeroPage.tsx";
 import Layout from "./Layout.tsx";
+import HeroPage from "./routes/HeroPage.tsx";
 import HisroryPage from "./routes/HistoryPage.tsx";
 import HowToPlayPage from "./routes/HowToPlayPage.tsx";
 

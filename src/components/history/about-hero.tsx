@@ -1,10 +1,11 @@
 import { useEffect, useRef } from "react";
+import SpotlightCard from "../SpotlightCard";
+import { SectionHeader } from "../section-header";
 
 export type HeroStat = {
 	value: string;
 	label: string;
 	detail: string;
-	color: string;
 };
 
 export type AboutHeroProps = {
@@ -51,34 +52,27 @@ export const AboutHero = ({ stats }: AboutHeroProps) => {
 
 	return (
 		<header className="relative grid gap-6 p-6 rounded-2xl bg-white/90 border border-gray-200">
-			<div>
-				<p className="text-sm uppercase tracking-widest text-gray-500">
-					Kabaddi in Japan
-				</p>
-				<h1 className="mt-1 text-2xl md:text-3xl font-extrabold text-gray-900">
-					日本カバディ史の概要
-				</h1>
-				<p className="mt-2 text-base text-gray-600">
-					1970年代後半の展示試合から2020年代の国際タイトルまで、日本でのカバディ導入と普及の流れを年代別に整理します。
-				</p>
-			</div>
+			<SectionHeader
+				kicker="Kabaddi in Japan"
+				title="日本カバディ史の概要"
+				intro="1970年代後半の展示試合から2020年代の国際タイトルまで、日本でのカバディ導入と普及の流れを年代別に整理します。"
+			/>
 			<div className="overflow-hidden py-3" aria-live="off">
 				<div className="flex gap-4 w-max" ref={statsTrackRef}>
 					{loopingStats.map((stat, index) => (
-						<div
+						<SpotlightCard
 							key={`${stat.value}-${index}`}
-							className="flex flex-col gap-2 p-4 rounded-lg border border-gray-200 bg-white shadow-sm min-w-[160px]"
-							style={{ backgroundColor: stat.color }}
+							className="flex flex-col gap-2 p-4 rounded-lg border border-gray-200 shadow-sm min-w-40"
 							aria-hidden={index >= uniqueStats.length}
 						>
-							<span className="text-2xl md:text-3xl font-bold text-gray-900">
+							<span className="text-2xl md:text-3xl font-bold font-display">
 								{stat.value}
 							</span>
-							<span className="text-xs uppercase tracking-wide text-gray-600">
+							<span className="text-xs uppercase tracking-wide">
 								{stat.label}
 							</span>
-							<p className="mt-1 text-sm text-gray-700">{stat.detail}</p>
-						</div>
+							<p className="mt-1 text-sm font-body">{stat.detail}</p>
+						</SpotlightCard>
 					))}
 				</div>
 			</div>

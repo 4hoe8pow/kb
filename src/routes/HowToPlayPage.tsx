@@ -1,4 +1,4 @@
-import { HeroLead } from "@/components/how-to-play/hero-lead";
+import { HowToPlayTitle } from "@/components/how-to-play/how-to-play-title";
 import { RaidFlowSection } from "@/components/how-to-play/raid-flow-section";
 import { RulesCardSection } from "@/components/how-to-play/rules-card-section";
 import { RulesIntroPanel } from "@/components/how-to-play/rules-intro-panel";
@@ -91,11 +91,8 @@ const RaidFlowSteps: RaidFlowStep[] = [
 
 export default function HowToPlayPage() {
 	return (
-		<main className="page-layout relative font-body overflow-hidden">
-			<div className="page-sheen" aria-hidden="true" />
-			<div className="page-grid" aria-hidden="true" />
-			<div className="bg-particles absolute inset-0 -z-10"></div>
-			<HeroLead title={heroTitle} subtitle={heroSubtitle} animate={true} />
+		<main className="relative font-body overflow-hidden">
+			<HowToPlayTitle title={heroTitle} subtitle={heroSubtitle} />
 			<RulesIntroPanel
 				accentLabel="BASICS"
 				title="カバディの基本と試合の流れを要点で解説します。"
