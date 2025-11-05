@@ -22,7 +22,7 @@ export const RecentHighlightsSection = ({
 			initialOpacity={0}
 			className="w-full"
 		>
-			<section className="rounded-2xl bg-white/90 border border-gray-200 p-6 shadow-sm">
+			<section className="rounded-2xl bg-cannoli-cream/90 dark:bg-chocolate-martini/90 border border-safari/20 dark:border-baltic-amber/70 p-6 shadow-sm">
 				<SectionHeader
 					kicker="Recent Highlights"
 					title="近年の成果と注目"
@@ -32,7 +32,7 @@ export const RecentHighlightsSection = ({
 					{highlights.map((highlight) => (
 						<SpotlightCard
 							key={highlight.title}
-							className="p-6 rounded-lg border border-gray-200 shadow-sm"
+							className="p-6 rounded-lg border border-safari/20 dark:border-baltic-amber/70 shadow-sm"
 						>
 							<h3 className="text-lg font-semibold ">{highlight.title}</h3>
 							<ul className="mt-3 list-none p-0 m-0 space-y-2 ">

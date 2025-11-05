@@ -25,9 +25,9 @@ export const AboutHero = ({ stats }: AboutHeroProps) => {
 			const uniqueWidth = trackEl.scrollWidth / 2;
 			if (!uniqueWidth) return;
 
-			const pxPerSecond = 80;
-			const duration = Math.max(uniqueWidth / pxPerSecond, 12);
-			const formattedOffset = `${uniqueWidth}px`;
+			const pxPerSecond = 40; // Slower speed for smooth effect
+			const duration = Math.max(uniqueWidth / pxPerSecond, 15);
+			const formattedOffset = `-${uniqueWidth}px`;
 			const formattedDuration = `${duration.toFixed(2)}s`;
 
 			trackEl.style.setProperty("--hero-stats-offset", formattedOffset);
@@ -51,18 +51,27 @@ export const AboutHero = ({ stats }: AboutHeroProps) => {
 	}, []);
 
 	return (
-		<header className="relative grid gap-6 p-6 rounded-2xl bg-white/90 border border-gray-200">
+		<header className="relative grid gap-6 p-6 rounded-2xl bg-cannoli-cream/90 dark:bg-chocolate-martini/90 border border-safari/20 dark:border-baltic-amber/70">
 			<SectionHeader
 				kicker="Kabaddi in Japan"
 				title="日本カバディ史の概要"
 				intro="1970年代後半の展示試合から2020年代の国際タイトルまで、日本でのカバディ導入と普及の流れを年代別に整理します。"
 			/>
 			<div className="overflow-hidden py-3" aria-live="off">
-				<div className="flex gap-4 w-max" ref={statsTrackRef}>
+				<div
+					className="flex gap-4 w-max animate-scroll-left"
+					ref={statsTrackRef}
+					style={
+						{
+							"--hero-stats-offset": "0px",
+							"--hero-stats-duration": "20s",
+						} as React.CSSProperties
+					}
+				>
 					{loopingStats.map((stat, index) => (
 						<SpotlightCard
 							key={`${stat.value}-${index}`}
-							className="flex flex-col gap-2 p-4 rounded-lg border border-gray-200 shadow-sm min-w-40"
+							className="flex flex-col gap-2 p-4 rounded-lg border border-safari/20 dark:border-baltic-amber/70 shadow-sm min-w-40 flex-shrink-0"
 							aria-hidden={index >= uniqueStats.length}
 						>
 							<span className="text-2xl md:text-3xl font-bold font-display">

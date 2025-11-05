@@ -1,5 +1,5 @@
-import FadeContent from "../FadeContent";
-import SpotlightCard from "../SpotlightCard";
+import { Badge } from "../ui/badge";
+import { Card, CardContent, CardFooter, CardHeader } from "../ui/card";
 
 export interface RulesIntroStat {
 	value: string;
@@ -17,41 +17,43 @@ export const RulesIntroPanel = (props: RulesIntroPanelProps) => {
 	const { accentLabel, title, copy, stats } = props;
 
 	return (
-		<FadeContent
-			blur={true}
-			duration={1000}
-			easing="ease-out"
-			initialOpacity={0}
-			className="w-full"
-		>
-			<section className="container mx-auto px-4 w-full rounded-[28px] bg-white/90 border-t border-b border-gray-200 p-6 shadow-2xl">
-				<div className="flex flex-col md:flex-row items-start gap-6">
-					<div className="flex-1">
-						<p className="text-xs uppercase tracking-widest text-background">
+		<Card className="container mx-auto w-full bg-card/95 backdrop-blur-sm border shadow-2xl">
+			<div className="flex flex-col md:flex-row items-start gap-8 p-8">
+				<div className="flex-1 space-y-4">
+					<CardHeader className="p-0 space-y-3">
+						<p className="text-xs uppercase tracking-widest text-muted-foreground font-semibold">
 							{accentLabel}
 						</p>
-						<h2 className="mt-2 text-2xl md:text-3xl font-extrabold text-background">
+						<h2 className="text-3xl md:text-4xl font-bold text-card-foreground leading-tight">
 							{title}
 						</h2>
-						<p className="mt-3 text-base text-background">{copy}</p>
-					</div>
-					<div className="flex gap-4 mt-4 md:mt-0">
+					</CardHeader>
+					<CardContent className="p-0">
+						<p className="text-lg text-muted-foreground leading-relaxed">
+							{copy}
+						</p>
+					</CardContent>
+				</div>
+				<CardFooter className="p-0 mt-6 md:mt-0 md:ml-4">
+					<div className="flex flex-wrap gap-3 md:flex-col md:gap-4">
 						{stats.map((stat) => (
-							<SpotlightCard
+							<Badge
 								key={stat.label}
-								className="flex flex-col gap-1 p-3 rounded-lg border border-gray-100 shadow-sm min-w-[120px]"
+								className="flex flex-col gap-2 p-4 h-auto min-w-[120px] bg-gradient-to-br from-card/80 to-card/60 hover:from-card/90 hover:to-card/70 transition-all duration-300 border-safari/50 shadow-sm hover:shadow-md"
+								role="img"
+								aria-label={`${stat.label}: ${stat.value}`}
 							>
-								<span className="text-2xl md:text-3xl font-bold">
+								<span className="text-2xl md:text-3xl font-bold text-card-foreground bg-gradient-to-r from-bland to-sirocco bg-clip-text text-transparent">
 									{stat.value}
 								</span>
-								<span className="text-xs uppercase tracking-wide">
+								<span className="text-xs uppercase tracking-wide text-muted-foreground font-medium">
 									{stat.label}
 								</span>
-							</SpotlightCard>
+							</Badge>
 						))}
 					</div>
-				</div>
-			</section>
-		</FadeContent>
+				</CardFooter>
+			</div>
+		</Card>
 	);
 };

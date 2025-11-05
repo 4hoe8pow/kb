@@ -1,8 +1,14 @@
 import { HowToPlayTitle } from "@/components/how-to-play/how-to-play-title";
 import { RaidFlowSection } from "@/components/how-to-play/raid-flow-section";
-import { RulesCardSection } from "@/components/how-to-play/rules-card-section";
-import { RulesIntroPanel } from "@/components/how-to-play/rules-intro-panel";
-import type { RaidFlowStep, RulesIntroStat } from "./kabaddi.types";
+import {
+	type RaidFlowStep,
+	RulesCardSection,
+} from "@/components/how-to-play/rules-card-section";
+import {
+	RulesIntroPanel,
+	type RulesIntroStat,
+} from "@/components/how-to-play/rules-intro-panel";
+import { usePageTitle } from "@/hooks/usePageTitle";
 
 const heroTitle = "RULES";
 const heroSubtitle =
@@ -90,6 +96,9 @@ const RaidFlowSteps: RaidFlowStep[] = [
 ];
 
 export default function HowToPlayPage() {
+	usePageTitle("ルール - KABADDI TIMES");
+	window.scrollTo({ top: 0, behavior: "instant" });
+
 	return (
 		<main className="relative font-body overflow-hidden">
 			<HowToPlayTitle title={heroTitle} subtitle={heroSubtitle} />

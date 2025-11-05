@@ -1,74 +1,65 @@
-import { AboutHero } from "@/components/history/about-hero";
-import { InternationalResultsSection } from "@/components/history/international-results-section";
-import { PhasesSection } from "@/components/history/phases-section";
-import { RecentHighlightsSection } from "@/components/history/recent-highlights-section";
-import type {
-	HeroStat,
-	HighlightEntry,
-	InternationalResult,
-	Phase,
-} from "./kabaddi.types";
+import { AboutHero, type HeroStat } from "@/components/history/about-hero";
+import {
+	type InternationalResult,
+	InternationalResultsSection,
+} from "@/components/history/international-results-section";
+import { type Phase, PhasesSection } from "@/components/history/phases-section";
+import {
+	type HighlightEntry,
+	RecentHighlightsSection,
+} from "@/components/history/recent-highlights-section";
+import { usePageTitle } from "@/hooks/usePageTitle";
 
 const heroStats: HeroStat[] = [
 	{
 		value: "1978",
 		label: "初上陸",
 		detail: "インド代表が来日し展示試合を実施",
-		color: "#f6f0ff",
 	},
 	{
 		value: "1981",
 		label: "組織設立",
 		detail: "日本カバディ協会（JAKA）設立・東金市で学校指導開始",
-		color: "#eef7ff",
 	},
 	{
 		value: "1989",
 		label: "全国大会創設",
 		detail: "第1回全日本カバディ選手権を開催",
-		color: "#fdf7ec",
 	},
 	{
 		value: "1990",
 		label: "国際舞台進出",
 		detail: "日本代表がアジア競技大会（北京）に初出場",
-		color: "#ecf7f2",
 	},
 	{
 		value: "1994",
 		label: "国内開催",
 		detail: "広島アジア大会でカバディ競技を日本が主催",
-		color: "#fff0f5",
 	},
 	{
 		value: "1998",
 		label: "女子代表誕生",
 		detail: "女子日本代表がアジア大会初出場",
-		color: "#f2f1ff",
 	},
 	{
 		value: "2000s",
 		label: "大学スポーツ化",
 		detail: "二松学舎大や筑波大などでクラブ設立が相次ぐ",
-		color: "#f5f9ee",
 	},
 	{
 		value: "2010",
 		label: "メダル獲得",
 		detail: "広州アジア大会で日本男子が銅メダル",
-		color: "#fef4e8",
 	},
 	{
 		value: "2025",
 		label: "地域連携強化",
 		detail: "東アジア選手権優勝・東日本連盟活動拡大",
-		color: "#f0fbff",
 	},
 ];
 
 const phases: Phase[] = [
 	{
-		id: "Ⅰ",
 		period: "導入期（1970年代後半〜1980年代前半）",
 		summary: "展示試合と学校体育を通じて基盤を整えた時期。",
 		timeline: { start: 0, span: 25 },
@@ -100,7 +91,6 @@ const phases: Phase[] = [
 		],
 	},
 	{
-		id: "Ⅱ",
 		period: "普及・競技化期（1980年代後半〜1990年代前半）",
 		summary: "メディア露出と公式大会が競技化を後押しした時期。",
 		timeline: { start: 25, span: 50 },
@@ -132,7 +122,6 @@ const phases: Phase[] = [
 		],
 	},
 	{
-		id: "Ⅲ",
 		period: "学生スポーツ化・国際出場の定着（1990年〜2000年代）",
 		summary: "大学クラブ設立と国際大会参加が並行して進んだ時期。",
 		timeline: { start: 50, span: 30 },
@@ -164,7 +153,6 @@ const phases: Phase[] = [
 		],
 	},
 	{
-		id: "Ⅳ",
 		period: "現代の展開と文化的波及（2010年〜）",
 		summary:
 			"全国的な組織整備と教育・文化への広がりが同時進行し、メディア表現を通じて若年層の関心が高まった時期。",
@@ -249,6 +237,9 @@ const recentHighlights: HighlightEntry[] = [
 ];
 
 const HistoryPage = () => {
+	usePageTitle("歴史 - KABADDI TIMES");
+	window.scrollTo({ top: 0, behavior: "instant" });
+
 	return (
 		<div className="w-full">
 			<main className="w-full max-w-6xl mx-auto flex flex-col gap-12 px-4 sm:px-6 lg:px-8 py-8">

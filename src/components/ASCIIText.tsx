@@ -241,7 +241,7 @@ class CanvasTxt {
 		{
 			fontSize = 200,
 			fontFamily = "Arial",
-			color = "#fdf9f3",
+			color = "oklch(0.965 0.008 85.9)", // cannoli-cream
 		}: CanvasTxtOptions = {},
 	) {
 		this.canvas = document.createElement("canvas");
@@ -522,7 +522,7 @@ export default function ASCIIText({
 	text = "David!",
 	asciiFontSize = 8,
 	textFontSize = 200,
-	textColor = "#fdf9f3",
+	textColor = "oklch(0.965 0.008 85.9)", // cannoli-cream
 	planeBaseHeight = 8,
 	enableWaves = true,
 }: ASCIITextProps) {
@@ -657,7 +657,7 @@ export default function ASCIIText({
           position: absolute;
           left: 0;
           top: 0;
-          background-image: radial-gradient(circle, #ff6188 0%, #fc9867 50%, #ffd866 100%);
+          background-image: radial-gradient(circle, oklch(0.697 0.066 56.8) 0%, oklch(0.738 0.089 62.1) 50%, oklch(0.826 0.056 68.2) 100%);
           background-attachment: fixed;
           -webkit-text-fill-color: transparent;
           -webkit-background-clip: text;

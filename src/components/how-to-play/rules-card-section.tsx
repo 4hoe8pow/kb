@@ -33,7 +33,7 @@ export const RulesCardSection = (props: RulesCardSectionProps) => {
 					{cards.map((card, index) => (
 						<SpotlightCard
 							key={card.title}
-							className="p-6 rounded-lg border border-gray-100 shadow-sm hover:shadow-md transition"
+							className="p-6 rounded-lg border border-safari/20 shadow-sm hover:shadow-md transition"
 						>
 							<div data-card-index={index + 1}>
 								<span className="text-xs uppercase tracking-wide">

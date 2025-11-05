@@ -4,7 +4,6 @@ import FadeContent from "../FadeContent";
 import { SectionHeader } from "../section-header";
 
 export type Phase = {
-	id: string;
 	period: string;
 	summary: string;
 	timeline: {
@@ -31,7 +30,7 @@ export const PhasesSection = ({ phases }: PhasesSectionProps) => {
 		description: phase.summary,
 		id: index,
 		icon: (
-			<span className="h-5 w-5 flex items-center justify-center rounded-full bg-[#060010] text-white text-xs">
+			<span className="h-5 w-5 flex items-center justify-center rounded-full bg-chocolate-martini dark:bg-cream-tan text-cannoli-cream dark:text-chocolate-martini text-xs">
 				{index + 1}
 			</span>
 		),
@@ -45,7 +44,7 @@ export const PhasesSection = ({ phases }: PhasesSectionProps) => {
 			initialOpacity={0}
 			className="w-full"
 		>
-			<section className="rounded-2xl bg-white/90 border border-gray-200 p-6 shadow-sm">
+			<section className="rounded-2xl bg-cannoli-cream/90 dark:bg-chocolate-martini/90 border border-safari/20 dark:border-baltic-amber/70 p-6 shadow-sm">
 				<SectionHeader
 					kicker="Historical Phases"
 					title="振興の沿革"

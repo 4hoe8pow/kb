@@ -1,9 +1,15 @@
-import type { RaidFlowSectionProps } from "@/routes/kabaddi.types";
 import FadeContent from "../FadeContent";
-import SpotlightCard from "../SpotlightCard";
+import type { RaidFlowStep } from "./rules-card-section";
+
+export interface RaidFlowSectionProps {
+	accentLabel: string;
+	title: string;
+	steps: RaidFlowStep[];
+}
 
 export const RaidFlowSection = (props: RaidFlowSectionProps) => {
 	const { accentLabel, title, steps } = props;
+
 	return (
 		<FadeContent
 			blur={true}
@@ -12,35 +18,58 @@ export const RaidFlowSection = (props: RaidFlowSectionProps) => {
 			initialOpacity={0}
 			className="w-full"
 		>
-			<section className="container mx-auto px-4 w-full mt-12 md:mt-16 rounded-[28px] bg-white/90 border border-gray-100 p-6 shadow-sm">
-				<div className="mb-4">
-					<p className="text-xs uppercase tracking-widest text-gray-500">
+			<section className="container mx-auto px-4 w-full mt-12 md:mt-16 rounded-[28px] bg-chocolate-martini/60 dark:bg-cannoli-cream/60 backdrop-blur-2xl border border-baltic-amber/50 dark:border-safari/50 p-6 shadow-[0_8px_32px_rgba(0,0,0,0.12)]">
+				<div className="mb-8">
+					<p className="text-xs uppercase tracking-widest text-cream-tan dark:text-sirocco font-semibold">
 						{accentLabel}
 					</p>
-					<h3 className="mt-1 text-2xl font-extrabold text-gray-900">
+					<h3 className="mt-1 text-3xl font-extrabold text-cannoli-cream dark:text-chocolate-martini">
 						{title}
 					</h3>
 				</div>
-				<div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-6 items-stretch">
+				<div className="relative max-w-4xl mx-auto pl-16">
 					{steps.map((step, index) => {
+						const stepNumber = index + 1;
+						const isLast = index === steps.length - 1;
 						return (
-							<SpotlightCard
+							<div
 								key={step.title}
-								className={
-									"relative p-6 rounded-lg border border-gray-100 shadow-sm hover:shadow-md transition"
-								}
+								className="relative group"
+								style={{
+									marginLeft: `${index * 40}px`,
+									marginTop: index === 0 ? "0" : "24px",
+								}}
 							>
-								<span className="absolute top-4 left-4 text-3xl font-extrabold">
-									0{index + 1}
-								</span>
-								<div className="flow-step-body pl-0">
-									<h4 className="text-xl font-semibold">{step.title}</h4>
-									<p className="text-sm uppercase tracking-widest mt-1">
+								{/* 接続線 */}
+								{!isLast && (
+									<div
+										className="absolute w-0.5 bg-border"
+										style={{
+											left: "-28px",
+											top: "56px",
+											height: "calc(100% + 24px - 56px)",
+										}}
+									/>
+								)}
+
+								{/* コンテンツカード */}
+								<div className="relative p-6 bg-chocolate-martini/40 dark:bg-cannoli-cream/40 backdrop-blur-xl border border-baltic-amber/50 dark:border-safari/50 rounded-2xl shadow-[0_8px_32px_rgba(0,0,0,0.12)] hover:shadow-[0_12px_48px_rgba(0,0,0,0.16)] transition-all duration-300 transform group-hover:-translate-y-1">
+									{/* ステップ番号バッジ - カード左上に固定 */}
+									<div className="absolute -left-7 -top-7 w-14 h-14 rounded-full bg-bland/90 backdrop-blur-sm text-cannoli-cream flex items-center justify-center text-xl font-bold shadow-[0_8px_24px_rgba(0,0,0,0.2)] border border-baltic-amber/30 dark:border-safari/30">
+										{stepNumber}
+									</div>
+
+									<p className="text-xs uppercase tracking-widest text-cream-tan dark:text-sirocco font-semibold">
 										{step.tag}
 									</p>
-									<p className="mt-3 text-sm">{step.description}</p>
+									<h4 className="mt-2 text-xl font-extrabold text-cannoli-cream dark:text-chocolate-martini">
+										{step.title}
+									</h4>
+									<p className="mt-3 text-base text-cream-tan dark:text-baltic-amber leading-relaxed">
+										{step.description}
+									</p>
 								</div>
-							</SpotlightCard>
+							</div>
 						);
 					})}
 				</div>
