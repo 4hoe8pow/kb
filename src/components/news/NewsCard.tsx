@@ -48,8 +48,8 @@ export function NewsCard({ article, index, onArticleClick }: NewsCardProps) {
 
 				{/* Animated background pattern */}
 				<div className="absolute inset-0 opacity-20 group-hover:opacity-30 transition-opacity duration-500">
-					<div className="absolute bottom-4 right-4 w-6 h-6 border-2 border-safari/30 rounded-full animate-pulse delay-500"></div>
-					<div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-12 h-12 border border-bland/20 rounded-lg rotate-45 animate-spin-slow"></div>
+					<div className="absolute bottom-4 right-4 w-6 h-6 border-2 border-safari/30 rounded-full animate-pulse [animation-delay:500ms]"></div>
+					<div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-12 h-12 border border-bland/20 rounded-lg rotate-45 [animation:spin-slow_8s_linear_infinite]"></div>
 				</div>
 
 				{/* Category icon with enhanced styling */}

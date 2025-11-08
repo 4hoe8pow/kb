@@ -1,10 +1,8 @@
 import { Link } from "react-router-dom";
-import reactLogo from "../assets/react.svg";
-import { useTheme } from "./theme-provider";
+import { ModeToggle } from "./mode-toggle";
 
 export const SiteFooter = () => {
 	const currentYear = new Date().getFullYear();
-	const { theme, setTheme } = useTheme();
 
 	// Silver ratio calculations following SlideTwo pattern
 	// Spacing scale based on silver ratio multiples (√2 ≈ 1.414214)
@@ -35,15 +33,15 @@ export const SiteFooter = () => {
 
 			{/* 3段組グリッドレイアウトのフッター with silver ratio spacing */}
 			<footer className="relative overflow-hidden border-t font-dramatic backdrop-blur-xs bg-background/80">
-				<div className="footer-container relative z-10 w-full max-w-7xl mx-auto grid grid-cols-3">
+				<div className="footer-container relative z-10 w-full max-w-7xl mx-auto grid grid-cols-[1fr_auto_1fr]">
 					{/* 左カラム（ブランド & ナビゲーション） */}
 					<div
-						className="flex flex-col items-start"
+						className="flex flex-col items-start justify-between"
 						style={{ gap: `${spacing.md}rem` }}
 					>
 						<Link
 							to="/"
-							className="text-[0.68rem] tracking-[0.24em] uppercase hover:opacity-70 transition-opacity"
+							className="text-xs tracking-[0.24em] uppercase hover:opacity-70 transition-opacity"
 						>
 							ANKLEHOLD
 						</Link>
@@ -53,50 +51,37 @@ export const SiteFooter = () => {
 						>
 							<Link
 								to="/how-to-play"
-								className="text-[0.68rem] tracking-[0.24em] uppercase hover:opacity-70 transition-opacity"
+								className="text-xs tracking-[0.24em] uppercase hover:opacity-70 transition-opacity"
 							>
 								&gt; Game Rules
 							</Link>
 							<Link
 								to="/history"
-								className="text-[0.68rem] tracking-[0.24em] uppercase hover:opacity-70 transition-opacity"
+								className="text-xs tracking-[0.24em] uppercase hover:opacity-70 transition-opacity"
 							>
 								&gt; History
 							</Link>
 							<Link
 								to="/news"
-								className="text-[0.68rem] tracking-[0.24em] uppercase hover:opacity-70 transition-opacity"
+								className="text-xs tracking-[0.24em] uppercase hover:opacity-70 transition-opacity"
 							>
 								&gt; Kabaddi Times
 							</Link>
 						</div>
-						<span className="text-[0.88rem] tracking-[0.08em] uppercase">
+						<span className="text-xs tracking-[0.24em] uppercase">
 							SPARK THE VOID.
 						</span>
 					</div>
 
 					{/* 中央カラム（テーマトグルアイコン） */}
 					<div className="flex items-center justify-center">
-						<button
-							type="button"
-							onClick={() => setTheme(theme === "light" ? "dark" : "light")}
-							className="w-8 h-8 opacity-60 hover:opacity-100 transition-all duration-300 hover:scale-110"
-							aria-label="Toggle theme"
-						>
-							<img
-								src={reactLogo}
-								alt="Toggle theme"
-								className={`w-full h-full transition-all duration-300 ${
-									theme === "dark" ? "invert" : ""
-								}`}
-							/>
-						</button>
+						<ModeToggle />
 					</div>
 
 					{/* 右カラム（リーガルリンク） */}
 					<div
-						className="flex flex-col items-end justify-center"
-						style={{ gap: `${spacing.sm}rem` }}
+						className="flex flex-col items-end justify-between"
+						style={{ gap: `${spacing.md}rem` }}
 					>
 						<div
 							className="flex flex-col items-end"
@@ -104,18 +89,18 @@ export const SiteFooter = () => {
 						>
 							<Link
 								to="/legal"
-								className="text-[0.68rem] tracking-[0.24em] uppercase hover:opacity-70 transition-opacity"
+								className="text-xs tracking-[0.24em] uppercase hover:opacity-70 transition-opacity"
 							>
 								Editorial Policy
 							</Link>
 							<Link
 								to="/privacy"
-								className="text-[0.68rem] tracking-[0.24em] uppercase hover:opacity-70 transition-opacity"
+								className="text-xs tracking-[0.24em] uppercase hover:opacity-70 transition-opacity"
 							>
 								Privacy Policy
 							</Link>
 						</div>
-						<p className="m-0 text-[0.72rem] tracking-[0.28em] uppercase">
+						<p className="text-[0.625rem] tracking-[0.12em] uppercase whitespace-nowrap">
 							&copy; {currentYear} Yu Tokunaga
 						</p>
 					</div>

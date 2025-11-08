@@ -1,47 +1,32 @@
-import { lazy, memo, Suspense, startTransition, useMemo } from "react";
+import { lazy, Suspense, useEffect, useState } from "react";
+// SlideOneは即座にロード（FCP/LCP改善）
+import SlideOne from "@/components/hero/SlideOne";
 import { useTheme } from "@/components/theme-provider";
-import { Spinner } from "@/components/ui/spinner";
 import { usePageTitle } from "@/hooks/usePageTitle";
 
-// Lazy load components with preloading
+// 画面外のコンポーネントは遅延ロード
 const LightRays = lazy(() => import("@/components/LightRays"));
-const SlideOne = lazy(() => import("@/components/hero/SlideOne"));
 const SlideTwo = lazy(() => import("@/components/hero/SlideTwo"));
-
-// Preload components for better UX
-const preloadComponents = () => {
-	startTransition(() => {
-		import("@/components/hero/SlideOne");
-		import("@/components/hero/SlideTwo");
-		import("@/components/LightRays");
-	});
-};
-
-// Main loading spinner
-const MainLoadingSpinner = memo(() => (
-	<div className="flex items-center justify-center h-screen bg-background">
-		<div className="flex flex-col items-center space-y-4">
-			<Spinner className="size-8" />
-			<p className="text-muted-foreground">Loading...</p>
-		</div>
-	</div>
-));
 
 function HeroPage() {
 	usePageTitle("ANKLEHOLD");
 	const { theme } = useTheme();
 	const isDarkMode = theme === "dark";
+	const [showSlideTwo, setShowSlideTwo] = useState(false);
 
-	// Preload components on mount
-	useMemo(() => {
-		preloadComponents();
+	// SlideTwoを遅延表示（初期レンダリング後）
+	useEffect(() => {
+		const timer = setTimeout(() => {
+			setShowSlideTwo(true);
+		}, 100);
+		return () => clearTimeout(timer);
 	}, []);
 
 	return (
-		<Suspense fallback={<MainLoadingSpinner />}>
-			<div style={{ position: "relative", height: "100vh" }}>
-				{/* Background - render immediately in dark mode */}
-				{isDarkMode && (
+		<div style={{ position: "relative", height: "100vh" }}>
+			{/* Background - 遅延ロード */}
+			{isDarkMode && (
+				<Suspense fallback={null}>
 					<div style={{ position: "fixed", inset: 0, zIndex: 0 }}>
 						<LightRays
 							raysOrigin="top-center"
@@ -56,24 +41,31 @@ function HeroPage() {
 							className="custom-rays"
 						/>
 					</div>
-				)}
+				</Suspense>
+			)}
 
-				{/* Main content */}
-				<div
-					style={{
-						position: "relative",
-						zIndex: 1,
-						height: "100%",
-						overflowY: "auto",
-						scrollSnapType: "y mandatory",
-						WebkitOverflowScrolling: "touch",
-					}}
-				>
-					<SlideOne />
-					<SlideTwo />
-				</div>
+			{/* Main content */}
+			<div
+				style={{
+					position: "relative",
+					zIndex: 1,
+					height: "100%",
+					overflowY: "auto",
+					scrollSnapType: "y mandatory",
+					WebkitOverflowScrolling: "touch",
+				}}
+			>
+				{/* SlideOne - 即座に表示（FCP/LCP最適化） */}
+				<SlideOne />
+
+				{/* SlideTwo - 遅延表示 */}
+				{showSlideTwo && (
+					<Suspense fallback={null}>
+						<SlideTwo />
+					</Suspense>
+				)}
 			</div>
-		</Suspense>
+		</div>
 	);
 }
 

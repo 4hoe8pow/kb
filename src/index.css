@@ -1,8 +1,5 @@
-@import url("https://fonts.googleapis.com/css2?family=Noto+Serif+JP:wght@200..900&family=Crimson+Text:ital,wght@0,400;0,600;0,700;1,400;1,600;1,700&family=New+Tegomin&family=Metal+Mania&family=Babylonica&display=swap");
 @import "tailwindcss";
 @import "tw-animate-css";
-@import "highlight.js/styles/github-dark.css";
-@import "katex/dist/katex.min.css";
 
 @custom-variant dark (&:is(.dark *));
 
@@ -55,6 +52,15 @@
 	--font-display: "Metal Mania", serif;
 	--font-hard: "Crimson Text", serif;
 	--font-script: "Babylonica", cursive;
+
+	/* カスタムアニメーション */
+	--animate-scroll-left: scroll-left var(--hero-stats-duration, 20s) linear
+		infinite;
+	--animate-fade-in: fade-in 0.8s ease-out;
+	--animate-fade-in-up: fade-in-up 0.8s ease-out;
+	--animate-spin-slow: spin-slow 8s linear infinite;
+	--animate-float: float 3s ease-in-out infinite;
+	--animate-glow: glow 2s ease-in-out infinite;
 }
 
 :root {
@@ -226,18 +232,16 @@
 	body {
 		@apply bg-background text-foreground;
 	}
-
-	/* テーマ切り替え時のスムーズなトランジション */
-	* {
-		transition:
-			background-color 0.15s ease,
-			border-color 0.15s ease,
-			color 0.15s ease;
+	/* 必要な要素にのみトランジションを適用 */
+	button,
+	a,
+	[role="button"] {
+		@apply transition-[background-color,border-color,color] duration-150 ease-in-out;
 	}
 }
 
 @layer utilities {
-	/* 回転寿司風のスムーズな左スクロールアニメーション */
+	/* カスタムアニメーション定義 */
 	@keyframes scroll-left {
 		from {
 			transform: translateX(0);
@@ -247,28 +251,6 @@
 		}
 	}
 
-	.animate-scroll-left {
-		animation: scroll-left var(--hero-stats-duration, 20s) linear infinite;
-	}
-
-	/* Tab Navigation Styles */
-	.tab-nav-bg {
-		background: linear-gradient(
-			135deg,
-			rgba(255, 255, 255, 0.1) 0%,
-			rgba(255, 255, 255, 0.05) 100%
-		);
-	}
-
-	.dark .tab-nav-bg {
-		background: linear-gradient(
-			135deg,
-			rgba(0, 0, 0, 0.2) 0%,
-			rgba(0, 0, 0, 0.1) 100%
-		);
-	}
-
-	/* Premium NewsPage Animations */
 	@keyframes fade-in {
 		from {
 			opacity: 0;
@@ -316,68 +298,5 @@
 		50% {
 			box-shadow: 0 0 30px rgba(var(--primary), 0.6);
 		}
-	}
-
-	.animate-fade-in {
-		animation: fade-in 0.8s ease-out;
-	}
-
-	.animate-fade-in-up {
-		animation: fade-in-up 0.8s ease-out;
-	}
-
-	.animate-spin-slow {
-		animation: spin-slow 8s linear infinite;
-	}
-
-	.animate-float {
-		animation: float 3s ease-in-out infinite;
-	}
-
-	.animate-glow {
-		animation: glow 2s ease-in-out infinite;
-	}
-
-	.delay-200 {
-		animation-delay: 200ms;
-	}
-
-	.delay-300 {
-		animation-delay: 300ms;
-	}
-
-	.delay-500 {
-		animation-delay: 500ms;
-	}
-
-	.delay-1000 {
-		animation-delay: 1000ms;
-	}
-
-	/* Text utilities */
-	.line-clamp-2 {
-		display: -webkit-box;
-		-webkit-line-clamp: 2;
-		-webkit-box-orient: vertical;
-		overflow: hidden;
-	}
-
-	.line-clamp-3 {
-		display: -webkit-box;
-		-webkit-line-clamp: 3;
-		-webkit-box-orient: vertical;
-		overflow: hidden;
-	}
-
-	/* Glass morphism effect */
-	.glass {
-		background: rgba(255, 255, 255, 0.1);
-		backdrop-filter: blur(10px);
-		border: 1px solid rgba(255, 255, 255, 0.2);
-	}
-
-	.dark .glass {
-		background: rgba(0, 0, 0, 0.2);
-		border: 1px solid rgba(255, 255, 255, 0.1);
 	}
 }

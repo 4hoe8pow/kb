@@ -43,7 +43,7 @@ export function NewsModal({ article, isOpen, onClose }: NewsModalProps) {
 				{/* Animated Gradient Overlay */}
 				<div className="absolute inset-0 bg-gradient-to-br from-bland/5 via-transparent to-sirocco/5 pointer-events-none opacity-60 overflow-hidden" />
 				<div className="absolute top-0 right-0 w-64 md:w-96 h-64 md:h-96 bg-bland/10 rounded-full blur-3xl pointer-events-none animate-pulse" />
-				<div className="absolute bottom-0 left-0 w-64 md:w-96 h-64 md:h-96 bg-chanterelle/10 rounded-full blur-3xl pointer-events-none animate-pulse delay-1000" />
+				<div className="absolute bottom-0 left-0 w-64 md:w-96 h-64 md:h-96 bg-chanterelle/10 rounded-full blur-3xl pointer-events-none animate-pulse [animation-delay:1000ms]" />
 
 				{/* Close Button - Floating (Hidden on mobile) */}
 				<Button

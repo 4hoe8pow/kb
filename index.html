@@ -2,9 +2,112 @@
 <html lang="ja">
   <head>
     <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>ANKLEHOLD</title>
+    
+    <!-- Primary Meta Tags -->
+    <title>ANKLEHOLD - カバディのルールを3Dアニメーションで学ぶ</title>
+    <meta name="title" content="ANKLEHOLD - カバディのルールを3Dアニメーションで学ぶ" />
+    <meta name="description" content="カバディのルールと戦術を3Dアニメーションとインタラクティブな視覚化で分かりやすく解説。初心者から上級者まで楽しめるカバディ学習プラットフォーム。" />
+    <meta name="keywords" content="カバディ,Kabaddi,スポーツ,ルール,3D,アニメーション,戦術,学習,インタラクティブ,ANKLEHOLD" />
+    <meta name="author" content="ANKLEHOLD" />
+    <meta name="robots" content="index, follow" />
+    <link rel="canonical" href="https://anklehold.jocarium.productions/" />
+    
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://anklehold.jocarium.productions/" />
+    <meta property="og:title" content="ANKLEHOLD - カバディのルールを3Dアニメーションで学ぶ" />
+    <meta property="og:description" content="カバディのルールと戦術を3Dアニメーションとインタラクティブな視覚化で分かりやすく解説。初心者から上級者まで楽しめるカバディ学習プラットフォーム。" />
+    <meta property="og:image" content="https://anklehold.jocarium.productions/og-image.png" />
+    <meta property="og:locale" content="ja_JP" />
+    <meta property="og:site_name" content="ANKLEHOLD" />
+    
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:url" content="https://anklehold.jocarium.productions/" />
+    <meta name="twitter:title" content="ANKLEHOLD - カバディのルールを3Dアニメーションで学ぶ" />
+    <meta name="twitter:description" content="カバディのルールと戦術を3Dアニメーションとインタラクティブな視覚化で分かりやすく解説。" />
+    <meta name="twitter:image" content="https://anklehold.jocarium.productions/og-image.png" />
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/x-icon" href="/favicon.ico" />
+    
+    <!-- Theme Color -->
+    <meta name="theme-color" content="#2D2520" />
+    <meta name="msapplication-TileColor" content="#2D2520" />
+    
+    <!-- DNS プリフェッチとプリコネクト -->
+    <link rel="dns-prefetch" href="https://fonts.googleapis.com" />
+    <link rel="dns-prefetch" href="https://fonts.gstatic.com" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    
+    <!-- クリティカルCSS - 初期表示に必要な最小限のスタイル -->
+    <style>
+      /* システムフォントをフォールバックに */
+      body {
+        margin: 0;
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
+        background-color: #FEFDFB;
+        color: #2D2520;
+      }
+      
+      /* ダークモード */
+      @media (prefers-color-scheme: dark) {
+        body {
+          background-color: #2D2520;
+          color: #FEFDFB;
+        }
+      }
+      
+      /* ローディング画面の最小スタイル */
+      #root {
+        min-height: 100vh;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+      
+      /* 初期ローディング表示 */
+      #root:empty::after {
+        content: "ANKLEHOLD";
+        font-size: clamp(2rem, 8vw, 6rem);
+        font-weight: bold;
+        opacity: 0.9;
+        animation: pulse 2s ease-in-out infinite;
+      }
+      
+      @keyframes pulse {
+        0%, 100% { opacity: 0.9; }
+        50% { opacity: 0.5; }
+      }
+      
+      /* フォントの読み込み中のちらつき防止 */
+      .font-loading {
+        visibility: hidden;
+      }
+    </style>
+    
+    <!-- フォントを非同期ロード（レンダリングをブロックしない） -->
+    <link 
+      rel="preload"
+      as="style"
+      href="https://fonts.googleapis.com/css2?family=Noto+Serif+JP:wght@400;700&family=Crimson+Text:wght@400;700&family=New+Tegomin&family=Metal+Mania&family=Babylonica&display=swap"
+    />
+    <link 
+      rel="stylesheet" 
+      href="https://fonts.googleapis.com/css2?family=Noto+Serif+JP:wght@400;700&family=Crimson+Text:wght@400;700&family=New+Tegomin&family=Metal+Mania&family=Babylonica&display=swap"
+      media="print" 
+      onload="this.media='all'"
+    />
+    <noscript>
+      <link 
+        rel="stylesheet" 
+        href="https://fonts.googleapis.com/css2?family=Noto+Serif+JP:wght@400;700&family=Crimson+Text:wght@400;700&family=New+Tegomin&family=Metal+Mania&family=Babylonica&display=swap"
+      />
+    </noscript>
   </head>
   <body>
     <div id="root"></div>

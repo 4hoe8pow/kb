@@ -64,7 +64,7 @@ export function NewsTabNavigation({
 				animate={{ opacity: 1, y: 0 }}
 				transition={{ duration: 0.6, ease: "easeOut" }}
 			>
-				<motion.div className="flex flex-nowrap justify-center gap-1.5 md:gap-6 p-1.5 md:p-3 tab-nav-bg backdrop-blur-md rounded-xl md:rounded-3xl border border-border/50 shadow-2xl overflow-x-auto [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
+				<motion.div className="flex flex-nowrap justify-center gap-1.5 md:gap-6 p-1.5 md:p-3 bg-gradient-to-[135deg] from-white/10 to-white/5 dark:from-black/20 dark:to-black/10 backdrop-blur-md rounded-xl md:rounded-3xl border border-border/50 shadow-2xl overflow-x-auto [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
 					{TAB_CONFIGS.map((tab, index) => {
 						const isActive = activeTab === tab.id;
 						const isHovered = hoveredTab === tab.id;

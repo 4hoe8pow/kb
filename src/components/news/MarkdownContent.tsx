@@ -6,6 +6,24 @@ import rehypeKatex from "rehype-katex";
 import rehypeRaw from "rehype-raw";
 import remarkGfm from "remark-gfm";
 import remarkMath from "remark-math";
+
+// KaTeX/highlight.jsのCSSを動的ロード
+if (typeof window !== "undefined") {
+	// highlight.js CSS
+	const highlightLink = document.createElement("link");
+	highlightLink.rel = "stylesheet";
+	highlightLink.href =
+		"https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/github-dark.min.css";
+	document.head.appendChild(highlightLink);
+
+	// KaTeX CSS
+	const katexLink = document.createElement("link");
+	katexLink.rel = "stylesheet";
+	katexLink.href =
+		"https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css";
+	document.head.appendChild(katexLink);
+}
+
 import {
 	Table,
 	TableBody,
