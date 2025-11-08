@@ -1,8 +1,8 @@
 {
-	"name": "kb",
+	"name": "anklehold",
 	"description": "A 3D interactive web app that visually explains Kabaddi rules through animations and clear visualizations.",
 	"private": true,
-	"version": "0.0.0",
+	"version": "0.1.0",
 	"type": "module",
 	"scripts": {
 		"dev": "bunx --bun vite",

@@ -96,7 +96,7 @@ const RaidFlowSteps: RaidFlowStep[] = [
 ];
 
 export default function HowToPlayPage() {
-	usePageTitle("ルール - KABADDI TIMES");
+	usePageTitle("競技規則 - ANKLEHOLD");
 	window.scrollTo({ top: 0, behavior: "instant" });
 
 	return (

@@ -28,7 +28,7 @@ const MainLoadingSpinner = memo(() => (
 ));
 
 function HeroPage() {
-	usePageTitle("KABADDI TIMES");
+	usePageTitle("ANKLEHOLD");
 	const { theme } = useTheme();
 	const isDarkMode = theme === "dark";
 

@@ -237,7 +237,7 @@ const recentHighlights: HighlightEntry[] = [
 ];
 
 const HistoryPage = () => {
-	usePageTitle("歴史 - KABADDI TIMES");
+	usePageTitle("歴史 - ANKLEHOLD");
 	window.scrollTo({ top: 0, behavior: "instant" });
 
 	return (

@@ -11,7 +11,7 @@ import { getArticlesByType, type NewsItem } from "@/lib/articles";
 import type { TabType } from "@/lib/tabConfig";
 
 function NewsPage() {
-	usePageTitle("ニュース - KABADDI TIMES");
+	usePageTitle("KABADDI TIMES - ANKLEHOLD");
 	// ページロード時に最上部に移動
 	window.scrollTo({ top: 0, behavior: "instant" });
 

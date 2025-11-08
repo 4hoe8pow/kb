@@ -1,7 +1,7 @@
 import { usePageTitle } from "@/hooks/usePageTitle";
 
 function LegalPage() {
-	usePageTitle("編集方針・引用規約 - KABADDI TIMES");
+	usePageTitle("コンテンツガイドライン - ANKLEHOLD");
 	window.scrollTo({ top: 0, behavior: "instant" });
 
 	return (
@@ -29,10 +29,7 @@ function LegalPage() {
 							</h2>
 							<div className="bg-muted/30 p-8 rounded-md border-l-4 border-primary">
 								<p className="leading-8 text-base">
-									KABADDI
-									TIMES（以下「当サイト」）は、公益性を有するスポーツ報道の目的に基づき、
-									日本カバディ協会（以下「協会」）その他公的機関が公表した情報を引用することがある。
-									当サイトは、引用に際し著作権法・肖像権・パブリシティ権その他関連法令を遵守する。
+									ANKLEHOLD（以下「当サイト」といいます。）は、カバディの普及及び発展に寄与することを目的とし、公益性を有するスポーツ報道の一環として、日本カバディ協会（以下「協会」といいます。）その他の公的機関が公表した情報を引用することがあります。当サイトは、協会をはじめとする情報提供者への敬意と感謝の念を持ち、著作権法、肖像権、パブリシティ権その他の関連法令を遵守し、適切な引用を行います。
 								</p>
 							</div>
 						</section>
@@ -42,7 +39,7 @@ function LegalPage() {
 								2. 引用の原則と要件
 							</h2>
 							<p className="mb-10 leading-8 text-base">
-								当サイトが協会発表情報を引用する場合、以下の条件をすべて満たすものとする。
+								当サイトが協会その他の公的機関が公表した情報を引用する場合、著作権法第32条に定める引用の要件を満たすため、以下の条件をすべて遵守します。
 							</p>
 							{/* 要件カード間隔: 白銀比 17px → 24px */}
 							<div className="space-y-6">
@@ -51,11 +48,10 @@ function LegalPage() {
 										<span className="bg-bland text-cannoli-cream rounded-full w-7 h-7 flex items-center justify-center text-sm font-bold mr-4">
 											1
 										</span>
-										公表済み資料に限ること
+										公表された著作物であること
 									</h4>
 									<p className="text-muted-foreground ml-11 leading-7">
-										公式Webサイト、プレスリリース、試合結果速報、広報誌、認定SNSアカウント等、
-										一般にアクセス可能な形で公表された情報に限定する。
+										公式Webサイト、プレスリリース、試合結果速報、広報誌、公式SNSアカウント等、既に公表された著作物に限定します。
 									</p>
 								</div>
 								<div className="bg-card border border-border rounded-md p-7">
@@ -63,10 +59,10 @@ function LegalPage() {
 										<span className="bg-bland text-cannoli-cream rounded-full w-7 h-7 flex items-center justify-center text-sm font-bold mr-4">
 											2
 										</span>
-										引用の目的が報道・批評・研究であること
+										公正な慣行に合致すること
 									</h4>
 									<p className="text-muted-foreground ml-11 leading-7">
-										単なる転載・再配信ではなく、独自の編集意図（分析・考察・紹介・比較等）を伴う。
+										報道、批評、研究その他の正当な目的のために行い、単なる転載又は再配信ではなく、独自の分析、考察、紹介、比較等の編集意図を伴います。
 									</p>
 								</div>
 								<div className="bg-card border border-border rounded-md p-7">
@@ -74,10 +70,10 @@ function LegalPage() {
 										<span className="bg-bland text-cannoli-cream rounded-full w-7 h-7 flex items-center justify-center text-sm font-bold mr-4">
 											3
 										</span>
-										引用部分は必要最小限とすること
+										引用の範囲が正当な範囲内であること
 									</h4>
 									<p className="text-muted-foreground ml-11 leading-7">
-										リザルト表・スコア・選手名等は必要範囲内に留め、資料全体の転載を行わない。
+										試合結果、スコア、選手名等の引用は報道上必要な範囲に留め、著作物全体又はその大部分を転載することはいたしません。
 									</p>
 								</div>
 								<div className="bg-card border border-border rounded-md p-7">
@@ -88,8 +84,7 @@ function LegalPage() {
 										出典を明示すること
 									</h4>
 									<p className="text-muted-foreground ml-11 leading-7">
-										記事内または文末に「出典：日本カバディ協会公式サイト（URL）」等を明示し、
-										可能な限り一次ソースへのリンクを付す。
+										記事内又は文末に「出典：日本カバディ協会公式サイト（URL）」等の形式で出典を明示し、可能な限り一次情報源へのリンクを設置します。
 									</p>
 								</div>
 								<div className="bg-card border border-border rounded-md p-7">
@@ -97,11 +92,10 @@ function LegalPage() {
 										<span className="bg-bland text-cannoli-cream rounded-full w-7 h-7 flex items-center justify-center text-sm font-bold mr-4">
 											5
 										</span>
-										引用部分が従であること
+										引用部分と当サイトの著作物が明瞭に区別されること
 									</h4>
 									<p className="text-muted-foreground ml-11 leading-7">
-										引用情報が記事本文の主題や論旨を補完する目的に留まり、
-										当サイト独自の解説・文脈が主要部分となるよう構成する。
+										引用部分を明確に区別し、当サイトの独自コンテンツが主、引用部分が従の関係となるよう構成します。
 									</p>
 								</div>
 							</div>
@@ -109,10 +103,10 @@ function LegalPage() {
 
 						<section>
 							<h2 className="font-display text-xl font-semibold border-b border-border pb-3 mb-8">
-								3. 転載・再利用に関する禁止事項
+								3. 禁止事項
 							</h2>
 							<p className="mb-10 leading-8 text-base">
-								以下の行為を原則として行わない。
+								当サイトは、協会その他の権利者の権利を尊重し、以下の行為を行いません。
 							</p>
 							<div className="bg-destructive/5 border border-destructive/20 rounded-md p-8">
 								<ul className="space-y-5">
@@ -121,7 +115,7 @@ function LegalPage() {
 											•
 										</span>
 										<span className="leading-7">
-											協会公式資料（PDF・画像・パンフレット等）の全体または大部分を転載する行為
+											協会が公表した資料（PDF、画像、パンフレット等）の全体又はその大部分を転載すること
 										</span>
 									</li>
 									<li className="flex items-start">
@@ -129,7 +123,7 @@ function LegalPage() {
 											•
 										</span>
 										<span className="leading-7">
-											協会サイト内の写真・図版・動画等を無断で複製・掲載する行為
+											協会の公式サイト内の写真、図版、動画等を権利者の許諾なく複製又は掲載すること
 										</span>
 									</li>
 									<li className="flex items-start">
@@ -137,7 +131,7 @@ function LegalPage() {
 											•
 										</span>
 										<span className="leading-7">
-											協会の著作物を編集・改変して再配布する行為
+											協会の著作物を編集、改変又は翻案して再配布すること
 										</span>
 									</li>
 									<li className="flex items-start">
@@ -145,7 +139,15 @@ function LegalPage() {
 											•
 										</span>
 										<span className="leading-7">
-											協会発表前の情報を外部経路から取得し公表する行為
+											協会が公表する前の情報を不正な手段により取得し、又は公表すること
+										</span>
+									</li>
+									<li className="flex items-start">
+										<span className="text-destructive mr-4 mt-1 text-lg">
+											•
+										</span>
+										<span className="leading-7">
+											権利者の名誉又は声望を害する態様で著作物を利用すること
 										</span>
 									</li>
 								</ul>
@@ -154,30 +156,28 @@ function LegalPage() {
 
 						<section>
 							<h2 className="font-display text-xl font-semibold border-b border-border pb-3 mb-8">
-								4. 実名・肖像の取り扱い
+								4. 個人情報及び肖像の取り扱い
 							</h2>
 							{/* グリッド間隔: 白銀比 24px → 34px */}
 							<div className="grid md:grid-cols-2 gap-8">
 								<div className="bg-card border border-border rounded-md p-8">
 									<h3 className="font-semibold text-foreground mb-6 flex items-center">
 										<span className="bg-cream-tan text-chocolate-martini rounded-md px-3 py-2 text-sm font-medium mr-4">
-											選手名
+											選手名等
 										</span>
 									</h3>
 									<p className="text-muted-foreground leading-7">
-										協会が公表する試合記録・公式登録名をそのまま使用可。
-										ただし、私的領域（家族・SNS発言・居住地等）に関する情報は一切扱わない。
+										協会が公表する試合記録及び公式登録名を報道目的の範囲内で使用します。選手及び関係者の私的領域（家族構成、私的なSNS発言、居住地等）に関する情報は取り扱いません。
 									</p>
 								</div>
 								<div className="bg-card border border-border rounded-md p-8">
 									<h3 className="font-semibold text-foreground mb-6 flex items-center">
 										<span className="bg-safari text-chocolate-martini rounded-md px-3 py-2 text-sm font-medium mr-4">
-											肖像
+											肖像権
 										</span>
 									</h3>
 									<p className="text-muted-foreground leading-7">
-										当サイトが自ら撮影した写真、または報道目的で正当に引用する写真以外は使用不可。
-										SNS投稿・放送キャプチャ・他媒体素材の無断使用を禁ずる。
+										当サイトが適法に撮影した写真、又は報道目的で正当に引用する写真に限り使用します。SNS投稿、放送画面のキャプチャ、他媒体の素材等を権利者の許諾なく使用することはいたしません。
 									</p>
 								</div>
 							</div>
@@ -185,7 +185,7 @@ function LegalPage() {
 
 						<section>
 							<h2 className="font-display text-xl font-semibold border-b border-border pb-3 mb-8">
-								5. 訂正・削除要請への対応
+								5. 訂正及び削除要請への対応
 							</h2>
 							<div className="space-y-6">
 								<div className="bg-chanterelle/10 dark:bg-chanterelle/5 border border-chanterelle/30 dark:border-chanterelle/20 rounded-md p-8">
@@ -194,8 +194,7 @@ function LegalPage() {
 											1
 										</span>
 										<p className="leading-7">
-											記事内容に誤り・不適切な表現があると指摘を受けた場合、
-											合理的な期間内（原則48時間以内）に調査を行い、訂正・削除・謝罪等の対応を行う。
+											当サイトは、記事内容に事実誤認、不適切な表現、又は権利侵害があるとの指摘を受けた場合、速やかに調査を行い、合理的な期間内（原則として48時間以内）に訂正、削除その他の適切な措置を講じます。
 										</p>
 									</div>
 								</div>
@@ -206,10 +205,10 @@ function LegalPage() {
 										</span>
 										<div>
 											<p className="mb-4 leading-7">
-												当サイトは訂正要請を受け付けるための専用窓口を常設する。
+												当サイトは、訂正及び削除要請を受け付けるための専用窓口を設置しています。
 											</p>
 											<div className="bg-white dark:bg-gray-900 border rounded px-4 py-3 font-mono text-sm">
-												corrections@kabadditimes.jp
+												support.anklehold&#64;jocarium.productions
 											</div>
 										</div>
 									</div>
@@ -222,23 +221,30 @@ function LegalPage() {
 								6. 免責事項
 							</h2>
 							<div className="bg-muted/50 border border-border rounded-md p-8">
-								<p className="leading-8">
-									当サイトは、引用元の内容についてその正確性を保証するものではなく、
-									引用元の表現に起因する誤り・不利益について責任を負わない。
-									ただし、明確な誤認・誤報を発見した場合は速やかに訂正を行う。
+								<p className="leading-8 mb-6">
+									当サイトは、掲載する情報の正確性及び完全性について最善の努力を払いますが、引用元の情報の正確性を保証するものではありません。引用元の情報に起因する誤り又は利用者が被った損害について、当サイトは責任を負いかねます。ただし、当サイトが明らかな事実誤認又は誤報を発見した場合は、速やかに訂正を行います。
 								</p>
 							</div>
 						</section>
 
 						<section>
 							<h2 className="font-display text-xl font-semibold border-b border-border pb-3 mb-8">
-								7. 準拠法
+								7. 準拠法及び管轄裁判所
 							</h2>
 							<div className="bg-cream-tan/50 dark:bg-chocolate-martini/50 border border-safari/20 dark:border-baltic-amber/70 rounded-md p-8">
 								<p className="leading-8">
-									本ガイドラインは日本法に準拠する。
-									協会または第三者との間に紛争が生じた場合、
-									東京地方裁判所を第一審の専属的合意管轄裁判所とする。
+									本ガイドラインの解釈及び適用については、日本法に準拠します。本ガイドラインに関連して協会その他の第三者との間に紛争が生じた場合、東京地方裁判所を第一審の専属的合意管轄裁判所とします。
+								</p>
+							</div>
+						</section>
+
+						<section>
+							<h2 className="font-display text-xl font-semibold border-b border-border pb-3 mb-8">
+								8. ガイドラインの変更
+							</h2>
+							<div className="bg-muted/50 border border-border rounded-md p-8">
+								<p className="leading-8">
+									当サイトは、法令の変更、社会情勢の変化、又はサービス内容の変更等に伴い、本ガイドラインを変更することがあります。変更後のガイドラインは、当サイトに掲載した時点から効力を生じるものとします。
 								</p>
 							</div>
 						</section>
