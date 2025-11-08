@@ -30,7 +30,7 @@ const SlideTwo = () => {
 			`}</style>
 
 			<section className="min-h-screen snap-start flex items-center justify-center px-6 md:px-12 py-16">
-				<div className="w-full max-w-7xl grid grid-cols-1 silver-grid silver-gap items-start">
+				<div className="w-full grid grid-cols-1 silver-grid silver-gap items-start">
 					<div className="flex flex-col items-start silver-gap-inner">
 						<h2 className="text-4xl md:text-6xl lg:text-8xl font-extrabold leading-tight tracking-tight bg-clip-text text-transparent bg-gradient-to-r from-bland via-sirocco to-baltic-amber dark:from-safari dark:via-chanterelle dark:to-bland drop-shadow-[0_20px_40px_rgba(0,0,0,0.6)]">
 							戦略性コンタクトスポーツ、カバディ

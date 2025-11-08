@@ -36,11 +36,27 @@
     <meta name="theme-color" content="#2D2520" />
     <meta name="msapplication-TileColor" content="#2D2520" />
     
-    <!-- DNS プリフェッチとプリコネクト -->
+    <!-- DNS プリフェッチとプリコネクト（FCP改善） -->
     <link rel="dns-prefetch" href="https://fonts.googleapis.com" />
     <link rel="dns-prefetch" href="https://fonts.gstatic.com" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    
+    <!-- IBM Plex Mono（ASCIIText用）を遅延ロード - LCPに影響させない -->
+    <link 
+      rel="preload"
+      as="style"
+      href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@500&display=swap"
+      onload="this.onload=null;this.rel='stylesheet'"
+      media="print"
+      onload="this.media='all'"
+    />
+    <noscript>
+      <link 
+        rel="stylesheet" 
+        href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@500&display=swap"
+      />
+    </noscript>
     
     <!-- クリティカルCSS - 初期表示に必要な最小限のスタイル -->
     <style>
@@ -70,36 +86,48 @@
         justify-content: center;
       }
       
-      /* 初期ローディング表示 */
+      /* 初期ローディング表示 - LCP最適化 */
       #root:empty::after {
         content: "ANKLEHOLD";
         font-size: clamp(2rem, 8vw, 6rem);
-        font-weight: bold;
-        opacity: 0.9;
-        animation: pulse 2s ease-in-out infinite;
+        font-weight: 900;
+        letter-spacing: 0.05em;
+        opacity: 1;
+        animation: fadeIn 0.3s ease-out;
+        text-align: center;
+        background: linear-gradient(135deg, #C89968 0%, #D4A574 50%, #E8C792 100%);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
       }
       
-      @keyframes pulse {
-        0%, 100% { opacity: 0.9; }
-        50% { opacity: 0.5; }
+      @keyframes fadeIn {
+        from { opacity: 0; }
+        to { opacity: 1; }
       }
       
       /* フォントの読み込み中のちらつき防止 */
       .font-loading {
         visibility: hidden;
       }
+      
+      /* スクロールバー非表示（初期表示用） */
+      body::-webkit-scrollbar {
+        display: none;
+      }
+      body {
+        -ms-overflow-style: none;
+        scrollbar-width: none;
+      }
     </style>
     
-    <!-- フォントを非同期ロード（レンダリングをブロックしない） -->
+    <!-- フォントを遅延ロード（LCPに影響させない） -->
     <link 
       rel="preload"
       as="style"
       href="https://fonts.googleapis.com/css2?family=Noto+Serif+JP:wght@400;700&family=Crimson+Text:wght@400;700&family=New+Tegomin&family=Metal+Mania&family=Babylonica&display=swap"
-    />
-    <link 
-      rel="stylesheet" 
-      href="https://fonts.googleapis.com/css2?family=Noto+Serif+JP:wght@400;700&family=Crimson+Text:wght@400;700&family=New+Tegomin&family=Metal+Mania&family=Babylonica&display=swap"
-      media="print" 
+      onload="this.onload=null;this.rel='stylesheet'"
+      media="print"
       onload="this.media='all'"
     />
     <noscript>
@@ -110,6 +138,25 @@
     </noscript>
   </head>
   <body>
+    <!-- テーマを即座に適用（ちらつき防止） -->
+    <script>
+      (function() {
+        try {
+          const theme = localStorage.getItem('vite-ui-theme') || 'system';
+          const root = document.documentElement;
+          
+          if (theme === 'dark') {
+            root.classList.add('dark');
+          } else if (theme === 'light') {
+            root.classList.add('light');
+          } else {
+            const systemTheme = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+            root.classList.add(systemTheme);
+          }
+        } catch (e) {}
+      })();
+    </script>
+    
     <div id="root"></div>
     <script type="module" src="/src/main.tsx"></script>
   </body>

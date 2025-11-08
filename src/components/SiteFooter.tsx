@@ -32,8 +32,8 @@ export const SiteFooter = () => {
 			`}</style>
 
 			{/* 3段組グリッドレイアウトのフッター with silver ratio spacing */}
-			<footer className="relative overflow-hidden border-t font-dramatic backdrop-blur-xs bg-background/80">
-				<div className="footer-container relative z-10 w-full max-w-7xl mx-auto grid grid-cols-[1fr_auto_1fr]">
+			<footer className="relative overflow-hidden border-t font-dramatic backdrop-blur-xs bg-background/80 w-full text-foreground">
+				<div className="footer-container relative z-10 w-full grid grid-cols-[1fr_auto_1fr]">
 					{/* 左カラム（ブランド & ナビゲーション） */}
 					<div
 						className="flex flex-col items-start justify-between"
@@ -41,7 +41,7 @@ export const SiteFooter = () => {
 					>
 						<Link
 							to="/"
-							className="text-xs tracking-[0.24em] uppercase hover:opacity-70 transition-opacity"
+							className="text-xs tracking-[0.24em] uppercase text-foreground hover:text-foreground/70 transition-colors"
 						>
 							ANKLEHOLD
 						</Link>
@@ -51,24 +51,24 @@ export const SiteFooter = () => {
 						>
 							<Link
 								to="/how-to-play"
-								className="text-xs tracking-[0.24em] uppercase hover:opacity-70 transition-opacity"
+								className="text-xs tracking-[0.24em] uppercase text-foreground hover:text-foreground/70 transition-colors"
 							>
 								&gt; Game Rules
 							</Link>
 							<Link
 								to="/history"
-								className="text-xs tracking-[0.24em] uppercase hover:opacity-70 transition-opacity"
+								className="text-xs tracking-[0.24em] uppercase text-foreground hover:text-foreground/70 transition-colors"
 							>
 								&gt; History
 							</Link>
 							<Link
 								to="/news"
-								className="text-xs tracking-[0.24em] uppercase hover:opacity-70 transition-opacity"
+								className="text-xs tracking-[0.24em] uppercase text-foreground hover:text-foreground/70 transition-colors"
 							>
 								&gt; Kabaddi Times
 							</Link>
 						</div>
-						<span className="text-xs tracking-[0.24em] uppercase">
+						<span className="text-xs tracking-[0.24em] uppercase text-foreground/80">
 							SPARK THE VOID.
 						</span>
 					</div>
@@ -89,18 +89,18 @@ export const SiteFooter = () => {
 						>
 							<Link
 								to="/legal"
-								className="text-xs tracking-[0.24em] uppercase hover:opacity-70 transition-opacity"
+								className="text-xs tracking-[0.24em] uppercase text-foreground hover:text-foreground/70 transition-colors"
 							>
 								Editorial Policy
 							</Link>
 							<Link
 								to="/privacy"
-								className="text-xs tracking-[0.24em] uppercase hover:opacity-70 transition-opacity"
+								className="text-xs tracking-[0.24em] uppercase text-foreground hover:text-foreground/70 transition-colors"
 							>
 								Privacy Policy
 							</Link>
 						</div>
-						<p className="text-[0.625rem] tracking-[0.12em] uppercase whitespace-nowrap">
+						<p className="text-[0.625rem] tracking-[0.12em] uppercase whitespace-nowrap text-foreground/70">
 							&copy; {currentYear} Yu Tokunaga
 						</p>
 					</div>

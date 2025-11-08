@@ -1,7 +1,7 @@
 import type { CarouselItem } from "../Carousel";
 import Carousel from "../Carousel";
 import FadeContent from "../FadeContent";
-import { SectionHeader } from "../section-header";
+import { SectionHeader } from "./section-header";
 
 export type Phase = {
 	period: string;

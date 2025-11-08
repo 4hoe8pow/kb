@@ -30,15 +30,18 @@ export default defineConfig({
   build: {
     cssMinify: 'lightningcss',
     minify: 'esbuild',
-    // モジュールプリロードを最適化
+    // モジュールプリロードを最適化（LCP改善）
     modulePreload: {
-      polyfill: true,
-      resolveDependencies: (_filename, deps) => {
-        // 重要なチャンクのみプリロード
-        return deps.filter(dep => 
-          dep.includes('react-vendor') || 
-          dep.includes('index')
-        );
+      polyfill: false, // ポリフィル削減
+      resolveDependencies: (filename, deps) => {
+        // 初期ロードに必要な最小限のチャンクのみプリロード
+        if (filename.includes('index')) {
+          return deps.filter(dep => 
+            dep.includes('react-vendor') || 
+            dep.includes('router')
+          );
+        }
+        return [];
       },
     },
     // ターゲットブラウザを指定（モダンブラウザのみ）
@@ -47,6 +50,8 @@ export default defineConfig({
     sourcemap: false,
     // CSSコード分割を無効化（FCP改善）
     cssCodeSplit: false,
+    // アセットのインライン化閾値を上げる（小さいファイルをインライン化）
+    assetsInlineLimit: 4096,
     rollupOptions: {
       output: {
         // ファイル名にハッシュを追加してキャッシュ最適化
@@ -56,11 +61,14 @@ export default defineConfig({
         manualChunks: (id) => {
           // React関連を分離（最優先でロード）
           if (id.includes('node_modules/react') || 
-              id.includes('node_modules/react-dom') || 
-              id.includes('node_modules/react-router-dom')) {
+              id.includes('node_modules/react-dom')) {
             return 'react-vendor';
           }
-          // アニメーションライブラリを分離
+          // React Router単独で分離（初期ロードのみ）
+          if (id.includes('node_modules/react-router-dom')) {
+            return 'router';
+          }
+          // アニメーションライブラリを分離（遅延ロード）
           if (id.includes('node_modules/gsap') || 
               id.includes('node_modules/@gsap') || 
               id.includes('node_modules/motion') || 
@@ -80,7 +88,7 @@ export default defineConfig({
               id.includes('node_modules/katex')) {
             return 'markdown';
           }
-          // UI関連を分離
+          // UI関連を分離（遅延ロード）
           if (id.includes('node_modules/@radix-ui') ||
               id.includes('node_modules/lucide-react')) {
             return 'ui-vendor';
@@ -97,5 +105,11 @@ export default defineConfig({
   optimizeDeps: {
     include: ['react', 'react-dom', 'react-router-dom'],
     exclude: ['three', 'ogl', 'gsap'],
+  },
+  // サーバー設定（開発時のパフォーマンス向上）
+  server: {
+    warmup: {
+      clientFiles: ['./src/main.tsx', './src/routes/HeroPage.tsx'],
+    },
   },
 })

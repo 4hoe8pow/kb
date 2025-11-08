@@ -17,7 +17,7 @@ export const RulesIntroPanel = (props: RulesIntroPanelProps) => {
 	const { accentLabel, title, copy, stats } = props;
 
 	return (
-		<Card className="container mx-auto w-full bg-card/95 backdrop-blur-sm border shadow-2xl">
+		<Card className="w-full bg-card/95 backdrop-blur-sm border shadow-2xl">
 			<div className="flex flex-col md:flex-row items-start gap-8 p-8">
 				<div className="flex-1 space-y-4">
 					<CardHeader className="p-0 space-y-3">

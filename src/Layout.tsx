@@ -3,9 +3,11 @@ import { SiteFooter } from "./components/SiteFooter";
 
 export default function Layout() {
 	return (
-		<>
-			<Outlet />
+		<div className="flex flex-col">
+			<main>
+				<Outlet />
+			</main>
 			<SiteFooter />
-		</>
+		</div>
 	);
 }

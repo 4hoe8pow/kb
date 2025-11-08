@@ -1,6 +1,6 @@
 import FadeContent from "../FadeContent";
 import SpotlightCard from "../SpotlightCard";
-import { SectionHeader } from "../section-header";
+import { SectionHeader } from "./section-header";
 
 export type HighlightEntry = {
 	title: string;
@@ -34,8 +34,8 @@ export const RecentHighlightsSection = ({
 							key={highlight.title}
 							className="p-6 rounded-lg border border-safari/20 dark:border-baltic-amber/70 shadow-sm"
 						>
-							<h3 className="text-lg font-semibold ">{highlight.title}</h3>
-							<ul className="mt-3 list-none p-0 m-0 space-y-2 ">
+							<h3 className="text-lg font-semibold">{highlight.title}</h3>
+							<ul className="mt-3 list-none p-0 m-0 space-y-2">
 								{highlight.details.map((detail) => (
 									<li key={detail}>{detail}</li>
 								))}

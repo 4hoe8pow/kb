@@ -241,14 +241,14 @@ const HistoryPage = () => {
 	window.scrollTo({ top: 0, behavior: "instant" });
 
 	return (
-		<div className="w-full">
-			<main className="w-full max-w-6xl mx-auto flex flex-col gap-12 px-4 sm:px-6 lg:px-8 py-8">
+		<main className="relative font-body overflow-hidden">
+			<div className="w-full px-4 py-8 md:py-12 space-y-8 md:space-y-12">
 				<AboutHero stats={heroStats} />
 				<PhasesSection phases={phases} />
 				<InternationalResultsSection results={asiaResults} />
 				<RecentHighlightsSection highlights={recentHighlights} />
-			</main>
-		</div>
+			</div>
+		</main>
 	);
 };
 

@@ -24,7 +24,7 @@ export const RulesCardSection = (props: RulesCardSectionProps) => {
 			initialOpacity={0}
 			className="w-full"
 		>
-			<section className="container mx-auto px-4 w-full mt-14 md:mt-20 rounded-[28px] p-6">
+			<section className="w-full px-4 mt-14 md:mt-20 rounded-[28px] p-6">
 				<div className="mb-4">
 					<p className="text-xs uppercase tracking-widest">{accentLabel}</p>
 					<h3 className="mt-1 text-2xl font-extrabold">{title}</h3>

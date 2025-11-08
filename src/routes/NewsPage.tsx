@@ -65,7 +65,7 @@ function NewsPage() {
 				hideDefaultCursor={true}
 				parallaxOn={true}
 			/>
-			<div className="relative container mx-auto md:px-6 py-8 md:py-20 max-w-7xl">
+			<div className="relative w-full md:px-6 py-8 md:py-20">
 				{/* Site Title */}
 				<div className="mb-2 md:mb-6">
 					<h1 className="text-2xl md:text-3xl font-hard tracking-wider text-foreground/80 hover:text-foreground transition-colors duration-300">

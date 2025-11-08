@@ -18,7 +18,7 @@ export const RaidFlowSection = (props: RaidFlowSectionProps) => {
 			initialOpacity={0}
 			className="w-full"
 		>
-			<section className="container mx-auto px-4 w-full mt-12 md:mt-16 rounded-[28px] bg-chocolate-martini/60 dark:bg-cannoli-cream/60 backdrop-blur-2xl border border-baltic-amber/50 dark:border-safari/50 p-6 shadow-[0_8px_32px_rgba(0,0,0,0.12)]">
+			<section className="w-full px-4 mt-12 md:mt-16 rounded-[28px] bg-chocolate-martini/60 dark:bg-cannoli-cream/60 backdrop-blur-2xl border border-baltic-amber/50 dark:border-safari/50 p-6 shadow-[0_8px_32px_rgba(0,0,0,0.12)]">
 				<div className="mb-8">
 					<p className="text-xs uppercase tracking-widest text-cream-tan dark:text-sirocco font-semibold">
 						{accentLabel}
@@ -27,7 +27,7 @@ export const RaidFlowSection = (props: RaidFlowSectionProps) => {
 						{title}
 					</h3>
 				</div>
-				<div className="relative max-w-4xl mx-auto pl-16">
+				<div className="relative w-full pl-16">
 					{steps.map((step, index) => {
 						const stepNumber = index + 1;
 						const isLast = index === steps.length - 1;

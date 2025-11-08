@@ -7,7 +7,7 @@ function LegalPage() {
 	return (
 		<main className="relative font-body overflow-hidden bg-background">
 			{/* 外側コンテナ: 基準単位 24px (1.5rem) */}
-			<div className="container mx-auto px-6 py-24 md:py-32 max-w-4xl">
+			<div className="w-full px-6 py-24 md:py-32">
 				{/* メインカード: 内側パディング 白銀比 24px → 34px */}
 				<div className="bg-card border border-border rounded-lg shadow-sm px-8 py-12 md:px-12 md:py-16">
 					{/* ヘッダー: マージン 白銀比 24px → 34px → 48px */}

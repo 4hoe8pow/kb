@@ -10,7 +10,7 @@ export const HowToPlayTitle = ({ title, subtitle }: HowToPlayTitleProps) => {
 		"font-dramatic text-center text-[0.8rem] md:text-[0.95rem] tracking-[0.28em] uppercase font-light mx-auto max-w-[70.7vw] leading-relaxed drop-shadow";
 
 	return (
-		<div className="container mx-auto px-4 py-8 md:py-12">
+		<div className="w-full px-4 py-8 md:py-12">
 			<div className="relative w-full flex justify-center">
 				<h1 className={titleClass}>{title}</h1>
 			</div>

@@ -1,6 +1,6 @@
 import { useEffect, useRef } from "react";
 import SpotlightCard from "../SpotlightCard";
-import { SectionHeader } from "../section-header";
+import { SectionHeader } from "./section-header";
 
 export type HeroStat = {
 	value: string;
@@ -51,7 +51,7 @@ export const AboutHero = ({ stats }: AboutHeroProps) => {
 	}, []);
 
 	return (
-		<header className="relative grid gap-6 p-6 rounded-2xl bg-cannoli-cream/90 dark:bg-chocolate-martini/90 border border-safari/20 dark:border-baltic-amber/70">
+		<header className="relative grid gap-4 md:gap-6 p-6 rounded-2xl bg-cannoli-cream/90 dark:bg-chocolate-martini/90 border border-safari/20 dark:border-baltic-amber/70">
 			<SectionHeader
 				kicker="Kabaddi in Japan"
 				title="日本カバディ史の概要"
@@ -71,7 +71,7 @@ export const AboutHero = ({ stats }: AboutHeroProps) => {
 					{loopingStats.map((stat, index) => (
 						<SpotlightCard
 							key={`${stat.value}-${index}`}
-							className="flex flex-col gap-2 p-4 rounded-lg border border-safari/20 dark:border-baltic-amber/70 shadow-sm min-w-40 flex-shrink-0"
+							className="flex flex-col gap-2 p-4 rounded-lg border border-safari/20 dark:border-baltic-amber/70 shadow-sm min-w-[180px] flex-shrink-0"
 							aria-hidden={index >= uniqueStats.length}
 						>
 							<span className="text-2xl md:text-3xl font-bold font-display">
@@ -80,7 +80,9 @@ export const AboutHero = ({ stats }: AboutHeroProps) => {
 							<span className="text-xs uppercase tracking-wide">
 								{stat.label}
 							</span>
-							<p className="mt-1 text-sm font-body">{stat.detail}</p>
+							<p className="mt-1 text-sm font-body leading-snug">
+								{stat.detail}
+							</p>
 						</SpotlightCard>
 					))}
 				</div>

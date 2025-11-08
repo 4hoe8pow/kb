@@ -13,19 +13,32 @@ function HeroPage() {
 	const { theme } = useTheme();
 	const isDarkMode = theme === "dark";
 	const [showSlideTwo, setShowSlideTwo] = useState(false);
+	const [showLightRays, setShowLightRays] = useState(false);
 
-	// SlideTwoを遅延表示（初期レンダリング後）
+	// requestIdleCallbackで遅延実行（メインスレッド負荷軽減）
 	useEffect(() => {
-		const timer = setTimeout(() => {
+		// LCPが完了してから重いコンポーネントをロード
+		const loadHeavyComponents = () => {
 			setShowSlideTwo(true);
-		}, 100);
-		return () => clearTimeout(timer);
+			setShowLightRays(true);
+		};
+
+		if ("requestIdleCallback" in window) {
+			const idleCallback = window.requestIdleCallback(loadHeavyComponents, {
+				timeout: 1500, // より早くロード開始
+			});
+			return () => window.cancelIdleCallback(idleCallback);
+		}
+
+		// フォールバック: 1秒で実行
+		const timeout = setTimeout(loadHeavyComponents, 1000);
+		return () => clearTimeout(timeout);
 	}, []);
 
 	return (
-		<div style={{ position: "relative", height: "100vh" }}>
-			{/* Background - 遅延ロード */}
-			{isDarkMode && (
+		<>
+			{/* Background - 遅延ロード（アイドル時のみ） */}
+			{isDarkMode && showLightRays && (
 				<Suspense fallback={null}>
 					<div style={{ position: "fixed", inset: 0, zIndex: 0 }}>
 						<LightRays
@@ -44,15 +57,12 @@ function HeroPage() {
 				</Suspense>
 			)}
 
-			{/* Main content */}
+			{/* Main content - スクロールスナップコンテナ */}
 			<div
+				className="snap-y snap-mandatory overflow-y-auto h-screen scrollbar-hide"
 				style={{
 					position: "relative",
 					zIndex: 1,
-					height: "100%",
-					overflowY: "auto",
-					scrollSnapType: "y mandatory",
-					WebkitOverflowScrolling: "touch",
 				}}
 			>
 				{/* SlideOne - 即座に表示（FCP/LCP最適化） */}
@@ -65,7 +75,7 @@ function HeroPage() {
 					</Suspense>
 				)}
 			</div>
-		</div>
+		</>
 	);
 }
 
