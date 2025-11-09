@@ -68,9 +68,6 @@ export const SiteFooter = () => {
 								&gt; Kabaddi Times
 							</Link>
 						</div>
-						<span className="text-xs tracking-[0.24em] uppercase text-foreground/80">
-							SPARK THE VOID.
-						</span>
 					</div>
 
 					{/* 中央カラム（テーマトグルアイコン） */}
@@ -100,6 +97,9 @@ export const SiteFooter = () => {
 								Privacy Policy
 							</Link>
 						</div>
+						<span className="font-script tracking-[0.24em] uppercase text-foreground/80">
+							SPARK THE VOID.
+						</span>
 						<p className="text-[0.625rem] tracking-[0.12em] uppercase whitespace-nowrap text-foreground/70">
 							&copy; {currentYear} Yu Tokunaga
 						</p>

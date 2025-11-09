@@ -1,4 +1,4 @@
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import * as THREE from "three";
 
 const vertexShader = `
@@ -241,7 +241,7 @@ class CanvasTxt {
 		{
 			fontSize = 200,
 			fontFamily = "Arial",
-			color = "oklch(0.965 0.008 85.9)", // cannoli-cream
+			color = "oklch(0.485 0.062 43.7)", // chocolate-martini (dark for light mode)
 		}: CanvasTxtOptions = {},
 	) {
 		this.canvas = document.createElement("canvas");
@@ -516,23 +516,71 @@ interface ASCIITextProps {
 	textColor?: string;
 	planeBaseHeight?: number;
 	enableWaves?: boolean;
+	theme?: "light" | "dark";
 }
 
 export default function ASCIIText({
 	text = "David!",
 	asciiFontSize = 8,
-	textFontSize = 200,
-	textColor = "oklch(0.965 0.008 85.9)", // cannoli-cream
+	textFontSize,
+	textColor,
 	planeBaseHeight = 8,
 	enableWaves = true,
+	theme = "light",
 }: ASCIITextProps) {
 	const containerRef = useRef<HTMLDivElement>(null);
 	const asciiRef = useRef<CanvAscii | null>(null);
+	const [isReady, setIsReady] = useState(false);
+
+	// テーマに応じて色を切り替え
+	const finalTextColor =
+		textColor ||
+		(theme === "dark"
+			? "oklch(0.965 0.008 85.9)" // cannoli-cream (light, low saturation)
+			: "oklch(0.485 0.062 43.7)"); // chocolate-martini (dark, low saturation)
+
+	const gradientColors =
+		theme === "dark"
+			? "radial-gradient(circle, oklch(0.697 0.066 56.8) 0%, oklch(0.738 0.089 62.1) 50%, oklch(0.826 0.056 68.2) 100%)" // bland -> chanterelle -> safari (high saturation)
+			: "radial-gradient(circle, oklch(0.485 0.062 43.7) 0%, oklch(0.631 0.108 54.3) 50%, oklch(0.771 0.073 58.4) 100%)"; // chocolate-martini -> baltic-amber -> sirocco (low saturation)
+
+	// CSS変数からフォントサイズを取得（レスポンシブ対応）
+	const getResponsiveFontSize = () => {
+		if (textFontSize !== undefined) return textFontSize;
+		if (typeof window === "undefined") return 21;
+		return window.innerWidth <= 768 ? 7 : 21;
+	};
+
+	const responsiveFontSize = getResponsiveFontSize();
 
 	useEffect(() => {
 		if (!containerRef.current) return;
 
 		const { width, height } = containerRef.current.getBoundingClientRect();
+
+		const initializeASCII = (w: number, h: number) => {
+			if (!containerRef.current) return;
+
+			asciiRef.current = new CanvAscii(
+				{
+					text,
+					asciiFontSize,
+					textFontSize: responsiveFontSize,
+					textColor: finalTextColor,
+					planeBaseHeight,
+					enableWaves,
+				},
+				containerRef.current,
+				w,
+				h,
+			);
+			asciiRef.current.load();
+
+			// 初期化完了後、少し遅延してから表示（レンダリング安定化）
+			requestAnimationFrame(() => {
+				setTimeout(() => setIsReady(true), 100);
+			});
+		};
 
 		if (width === 0 || height === 0) {
 			const observer = new IntersectionObserver(
@@ -544,22 +592,7 @@ export default function ASCIIText({
 						containerRef.current
 					) {
 						const { width: w, height: h } = entry.boundingClientRect;
-
-						asciiRef.current = new CanvAscii(
-							{
-								text,
-								asciiFontSize,
-								textFontSize,
-								textColor,
-								planeBaseHeight,
-								enableWaves,
-							},
-							containerRef.current,
-							w,
-							h,
-						);
-						asciiRef.current.load();
-
+						initializeASCII(w, h);
 						observer.disconnect();
 					}
 				},
@@ -576,20 +609,7 @@ export default function ASCIIText({
 			};
 		}
 
-		asciiRef.current = new CanvAscii(
-			{
-				text,
-				asciiFontSize,
-				textFontSize,
-				textColor,
-				planeBaseHeight,
-				enableWaves,
-			},
-			containerRef.current,
-			width,
-			height,
-		);
-		asciiRef.current.load();
+		initializeASCII(width, height);
 
 		const ro = new ResizeObserver((entries) => {
 			if (!entries[0] || !asciiRef.current) return;
@@ -609,10 +629,10 @@ export default function ASCIIText({
 	}, [
 		text,
 		asciiFontSize,
-		textFontSize,
-		textColor,
 		planeBaseHeight,
 		enableWaves,
+		responsiveFontSize,
+		finalTextColor,
 	]);
 
 	return (
@@ -623,6 +643,8 @@ export default function ASCIIText({
 				position: "absolute",
 				width: "100%",
 				height: "100%",
+				opacity: isReady ? 1 : 0,
+				transition: "opacity 0.6s ease-in-out",
 			}}
 		>
 			<style>{`
@@ -650,7 +672,7 @@ export default function ASCIIText({
           position: absolute;
           left: 0;
           top: 0;
-          background-image: radial-gradient(circle, oklch(0.697 0.066 56.8) 0%, oklch(0.738 0.089 62.1) 50%, oklch(0.826 0.056 68.2) 100%);
+          background-image: ${gradientColors};
           background-attachment: fixed;
           -webkit-text-fill-color: transparent;
           -webkit-background-clip: text;

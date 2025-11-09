@@ -65,12 +65,19 @@ function NewsPage() {
 				hideDefaultCursor={true}
 				parallaxOn={true}
 			/>
-			<div className="relative w-full md:px-6 py-8 md:py-20">
-				{/* Site Title */}
-				<div className="mb-2 md:mb-6">
-					<h1 className="text-2xl md:text-3xl font-hard tracking-wider text-foreground/80 hover:text-foreground transition-colors duration-300">
+			<div className="relative w-full py-8 md:py-20">
+				{/* Page Title */}
+				<div className="mb-6 md:mb-12 text-center px-4">
+					<h1 className="text-3xl md:text-5xl lg:text-6xl font-hard tracking-widest bg-gradient-to-r from-bland via-sirocco to-chanterelle bg-clip-text text-transparent hover:from-chanterelle hover:via-sirocco hover:to-bland transition-all duration-500 drop-shadow-2xl">
 						KABADDI TIMES
 					</h1>
+					<div className="mt-3 md:mt-4 flex items-center justify-center gap-2">
+						<div className="h-px w-12 md:w-16 bg-gradient-to-r from-transparent to-bland"></div>
+						<p className="text-xs md:text-sm text-muted-foreground/80 font-body tracking-wider uppercase">
+							カバディ速報
+						</p>
+						<div className="h-px w-12 md:w-16 bg-gradient-to-l from-transparent to-bland"></div>
+					</div>
 				</div>
 
 				{/* Tab Navigation */}

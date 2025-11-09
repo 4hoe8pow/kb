@@ -29,7 +29,7 @@ export function NewsGrid({
 	return (
 		<>
 			{/* モバイル: ScrollStack */}
-			<div className="block md:hidden h-[600px] overflow-y-auto -mx-4 px-2">
+			<div className="block md:hidden h-[600px] overflow-y-auto">
 				<ScrollStack itemStackDistance={30} stackPosition="5" baseScale={1}>
 					{articles.map((article, index) => (
 						<ScrollStackItem key={article.id}>
@@ -44,7 +44,7 @@ export function NewsGrid({
 			</div>
 
 			{/* デスクトップ: グリッドレイアウト */}
-			<div className="hidden md:grid gap-8 md:grid-cols-2 lg:grid-cols-3">
+			<div className="hidden md:grid gap-8 md:grid-cols-2 lg:grid-cols-3 w-full px-4 md:px-8">
 				{articles.map((article, index) => (
 					<NewsCard
 						key={article.id}

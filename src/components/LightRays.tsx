@@ -257,7 +257,9 @@ void mainImage(out vec4 fragColor, in vec2 fragCoord) {
     fragColor.rgb = mix(vec3(gray), fragColor.rgb, saturation);
   }
 
-  fragColor.rgb *= raysColor;
+  // Apply color with better blending for both light and dark modes
+  float intensity = length(fragColor.rgb) / sqrt(3.0);
+  fragColor.rgb = raysColor * intensity * 1.5;
 }
 
 void main() {
