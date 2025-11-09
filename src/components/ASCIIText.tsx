@@ -241,7 +241,7 @@ class CanvasTxt {
 		{
 			fontSize = 200,
 			fontFamily = "Arial",
-			color = "oklch(0.965 0.008 85.9)", // cannoli-cream
+			color = "oklch(0.485 0.062 43.7)", // chocolate-martini (dark for light mode)
 		}: CanvasTxtOptions = {},
 	) {
 		this.canvas = document.createElement("canvas");
@@ -516,18 +516,32 @@ interface ASCIITextProps {
 	textColor?: string;
 	planeBaseHeight?: number;
 	enableWaves?: boolean;
+	theme?: "light" | "dark";
 }
 
 export default function ASCIIText({
 	text = "David!",
 	asciiFontSize = 8,
 	textFontSize,
-	textColor = "oklch(0.965 0.008 85.9)", // cannoli-cream
+	textColor,
 	planeBaseHeight = 8,
 	enableWaves = true,
+	theme = "light",
 }: ASCIITextProps) {
 	const containerRef = useRef<HTMLDivElement>(null);
 	const asciiRef = useRef<CanvAscii | null>(null);
+
+	// テーマに応じて色を切り替え
+	const finalTextColor =
+		textColor ||
+		(theme === "dark"
+			? "oklch(0.965 0.008 85.9)" // cannoli-cream (light, low saturation)
+			: "oklch(0.485 0.062 43.7)"); // chocolate-martini (dark, low saturation)
+
+	const gradientColors =
+		theme === "dark"
+			? "radial-gradient(circle, oklch(0.697 0.066 56.8) 0%, oklch(0.738 0.089 62.1) 50%, oklch(0.826 0.056 68.2) 100%)" // bland -> chanterelle -> safari (high saturation)
+			: "radial-gradient(circle, oklch(0.485 0.062 43.7) 0%, oklch(0.631 0.108 54.3) 50%, oklch(0.771 0.073 58.4) 100%)"; // chocolate-martini -> baltic-amber -> sirocco (low saturation)
 
 	// CSS変数からフォントサイズを取得（レスポンシブ対応）
 	const getResponsiveFontSize = () => {
@@ -559,7 +573,7 @@ export default function ASCIIText({
 								text,
 								asciiFontSize,
 								textFontSize: responsiveFontSize,
-								textColor,
+								textColor: finalTextColor,
 								planeBaseHeight,
 								enableWaves,
 							},
@@ -590,7 +604,7 @@ export default function ASCIIText({
 				text,
 				asciiFontSize,
 				textFontSize: responsiveFontSize,
-				textColor,
+				textColor: finalTextColor,
 				planeBaseHeight,
 				enableWaves,
 			},
@@ -618,10 +632,10 @@ export default function ASCIIText({
 	}, [
 		text,
 		asciiFontSize,
-		textColor,
 		planeBaseHeight,
 		enableWaves,
 		responsiveFontSize,
+		finalTextColor,
 	]);
 
 	return (
@@ -659,7 +673,7 @@ export default function ASCIIText({
           position: absolute;
           left: 0;
           top: 0;
-          background-image: radial-gradient(circle, oklch(0.697 0.066 56.8) 0%, oklch(0.738 0.089 62.1) 50%, oklch(0.826 0.056 68.2) 100%);
+          background-image: ${gradientColors};
           background-attachment: fixed;
           -webkit-text-fill-color: transparent;
           -webkit-background-clip: text;

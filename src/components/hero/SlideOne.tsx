@@ -1,5 +1,6 @@
 import { lazy, Suspense, useEffect, useState } from "react";
 import { LoadingFallback } from "../LoadingFallback";
+import { useTheme } from "../theme-provider";
 
 // 重いアニメーションコンポーネントを遅延ロード
 const ASCIIText = lazy(() => import("../ASCIIText"));
@@ -11,7 +12,17 @@ const ASCII_LOAD_DELAY = {
 } as const;
 
 const SlideOne = () => {
+	const { theme } = useTheme();
 	const [showASCII, setShowASCII] = useState(false);
+
+	// システムテーマを解決
+	const resolvedTheme =
+		theme === "system"
+			? typeof window !== "undefined" &&
+				window.matchMedia("(prefers-color-scheme: dark)").matches
+				? "dark"
+				: "light"
+			: theme;
 
 	useEffect(() => {
 		// ユーザーインタラクション後にASCIITextをロード（LCP改善）
@@ -36,10 +47,15 @@ const SlideOne = () => {
 	}, []);
 
 	return (
-		<section className="min-h-screen snap-start flex items-center justify-center">
+		<section className="min-h-screen snap-start flex items-center justify-center bg-cannoli-cream dark:bg-transparent">
 			{showASCII ? (
 				<Suspense fallback={<LoadingFallback />}>
-					<ASCIIText text="ANKLEHOLD" enableWaves={true} asciiFontSize={5} />
+					<ASCIIText
+						text="ANKLEHOLD"
+						enableWaves={true}
+						asciiFontSize={5}
+						theme={resolvedTheme}
+					/>
 				</Suspense>
 			) : (
 				<LoadingFallback />

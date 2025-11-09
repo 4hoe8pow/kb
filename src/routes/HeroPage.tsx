@@ -38,12 +38,16 @@ function HeroPage() {
 	return (
 		<>
 			{/* Background - 遅延ロード（アイドル時のみ） */}
-			{isDarkMode && showLightRays && (
+			{showLightRays && (
 				<Suspense fallback={null}>
 					<div style={{ position: "fixed", inset: 0, zIndex: 0 }}>
 						<LightRays
-							raysOrigin="top-center"
-							raysColor="oklch(0.826 0.056 68.2)"
+							raysOrigin={isDarkMode ? "top-center" : "bottom-center"}
+							raysColor={
+								isDarkMode
+									? "oklch(0.826 0.056 68.2)"
+									: "oklch(0.631 0.108 54.3)"
+							}
 							raysSpeed={1.5}
 							lightSpread={0.8}
 							rayLength={1.7}
@@ -59,7 +63,7 @@ function HeroPage() {
 
 			{/* Main content - スクロールスナップコンテナ */}
 			<div
-				className="snap-y snap-mandatory overflow-y-auto h-screen scrollbar-hide"
+				className="snap-y snap-mandatory overflow-y-auto overflow-x-hidden h-screen scrollbar-hide"
 				style={{
 					position: "relative",
 					zIndex: 1,
