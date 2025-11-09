@@ -8,10 +8,16 @@ import GlassCard from "./glass-card";
 // wider viewports use grid columns = √2 : 1 (left : right).
 const SlideTwo = () => {
 	const silver = Math.SQRT2.toFixed(6); // precise silver ratio (~1.414214)
-	const silverGap = (48 * Math.SQRT2).toFixed(2); // 48px * √2 ≈ 67.88px
-	const silverGapSm = (32 * Math.SQRT2).toFixed(2); // 32px * √2 ≈ 45.25px
-	const silverGapXs = (8 * Math.SQRT2).toFixed(2); // 8px * √2 ≈ 11.31px
-	const silverGapMd = (16 * Math.SQRT2).toFixed(2); // 16px * √2 ≈ 22.63px
+
+	// 白銀比ベースの余白システム: 基準値 24px から階層的に展開
+	const base = 24;
+	const spacing = {
+		xs: (base / Math.SQRT2).toFixed(2), // 24 / √2 ≈ 16.97px
+		sm: base.toFixed(2), // 24px
+		md: (base * Math.SQRT2).toFixed(2), // 24 * √2 ≈ 33.94px
+		lg: (base * Math.SQRT2 * Math.SQRT2).toFixed(2), // 24 * 2 = 48px
+		xl: (base * Math.SQRT2 * Math.SQRT2 * Math.SQRT2).toFixed(2), // 24 * 2√2 ≈ 67.88px
+	};
 
 	return (
 		<>
@@ -22,14 +28,20 @@ const SlideTwo = () => {
 						grid-template-columns: ${silver}fr 1fr; 
 					} 
 				}
-				.silver-gap { gap: ${silverGapSm}px; }
-				@media (min-width: 768px) { .silver-gap { gap: ${silverGap}px; } }
-				.silver-gap-inner { gap: ${silverGapSm}px; }
-				.silver-gap-cards { gap: ${silverGapXs}px; }
-				@media (min-width: 768px) { .silver-gap-cards { gap: ${silverGapMd}px; } }
+				/* モバイル: sm間隔、デスクトップ: xl間隔 */
+				.silver-gap { gap: ${spacing.sm}px; }
+				@media (min-width: 768px) { .silver-gap { gap: ${spacing.xl}px; } }
+				
+				/* 左カラム内部の要素間: モバイル sm、デスクトップ lg */
+				.silver-gap-inner { gap: ${spacing.sm}px; }
+				@media (min-width: 768px) { .silver-gap-inner { gap: ${spacing.lg}px; } }
+				
+				/* カード間: モバイル xs、デスクトップ md */
+				.silver-gap-cards { gap: ${spacing.xs}px; }
+				@media (min-width: 768px) { .silver-gap-cards { gap: ${spacing.md}px; } }
 			`}</style>
 
-			<section className="min-h-screen snap-start flex items-center justify-center px-6 md:px-12 py-16">
+			<section className="min-h-screen snap-start flex items-center justify-center px-6 md:px-12 lg:px-24 xl:px-32 py-16">
 				<div className="w-full grid grid-cols-1 silver-grid silver-gap items-start">
 					<div className="flex flex-col items-start silver-gap-inner">
 						<h2 className="text-4xl md:text-6xl lg:text-8xl font-extrabold leading-tight tracking-tight bg-clip-text text-transparent bg-gradient-to-r from-bland via-sirocco to-baltic-amber dark:from-safari dark:via-chanterelle dark:to-bland drop-shadow-[0_20px_40px_rgba(0,0,0,0.6)]">

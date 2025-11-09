@@ -521,13 +521,22 @@ interface ASCIITextProps {
 export default function ASCIIText({
 	text = "David!",
 	asciiFontSize = 8,
-	textFontSize = 200,
+	textFontSize,
 	textColor = "oklch(0.965 0.008 85.9)", // cannoli-cream
 	planeBaseHeight = 8,
 	enableWaves = true,
 }: ASCIITextProps) {
 	const containerRef = useRef<HTMLDivElement>(null);
 	const asciiRef = useRef<CanvAscii | null>(null);
+
+	// CSS変数からフォントサイズを取得（レスポンシブ対応）
+	const getResponsiveFontSize = () => {
+		if (textFontSize !== undefined) return textFontSize;
+		if (typeof window === "undefined") return 21;
+		return window.innerWidth <= 768 ? 7 : 21;
+	};
+
+	const responsiveFontSize = getResponsiveFontSize();
 
 	useEffect(() => {
 		if (!containerRef.current) return;
@@ -549,7 +558,7 @@ export default function ASCIIText({
 							{
 								text,
 								asciiFontSize,
-								textFontSize,
+								textFontSize: responsiveFontSize,
 								textColor,
 								planeBaseHeight,
 								enableWaves,
@@ -580,7 +589,7 @@ export default function ASCIIText({
 			{
 				text,
 				asciiFontSize,
-				textFontSize,
+				textFontSize: responsiveFontSize,
 				textColor,
 				planeBaseHeight,
 				enableWaves,
@@ -609,10 +618,10 @@ export default function ASCIIText({
 	}, [
 		text,
 		asciiFontSize,
-		textFontSize,
 		textColor,
 		planeBaseHeight,
 		enableWaves,
+		responsiveFontSize,
 	]);
 
 	return (
