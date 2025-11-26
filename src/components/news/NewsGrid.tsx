@@ -9,15 +9,9 @@ interface NewsGridProps {
 	articles: NewsItem[];
 	loading: boolean;
 	activeTab: TabType;
-	onArticleClick: (article: NewsItem) => void;
 }
 
-export function NewsGrid({
-	articles,
-	loading,
-	activeTab,
-	onArticleClick,
-}: NewsGridProps) {
+export function NewsGrid({ articles, loading, activeTab }: NewsGridProps) {
 	if (loading) {
 		return <NewsGridSkeleton activeTab={activeTab} />;
 	}
@@ -33,11 +27,7 @@ export function NewsGrid({
 				<ScrollStack itemStackDistance={30} stackPosition="5" baseScale={1}>
 					{articles.map((article, index) => (
 						<ScrollStackItem key={article.id}>
-							<NewsCard
-								article={article}
-								index={index}
-								onArticleClick={onArticleClick}
-							/>
+							<NewsCard article={article} index={index} />
 						</ScrollStackItem>
 					))}
 				</ScrollStack>
@@ -46,12 +36,7 @@ export function NewsGrid({
 			{/* デスクトップ: グリッドレイアウト */}
 			<div className="hidden md:grid gap-8 md:grid-cols-2 lg:grid-cols-3 w-full px-4 md:px-8">
 				{articles.map((article, index) => (
-					<NewsCard
-						key={article.id}
-						article={article}
-						index={index}
-						onArticleClick={onArticleClick}
-					/>
+					<NewsCard key={article.id} article={article} index={index} />
 				))}
 			</div>
 		</>

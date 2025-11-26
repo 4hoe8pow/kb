@@ -1,10 +1,5 @@
 import { useEffect, useState } from "react";
-import {
-	NewsGrid,
-	NewsLoadMore,
-	NewsModal,
-	NewsTabNavigation,
-} from "@/components/news";
+import { NewsGrid, NewsLoadMore, NewsTabNavigation } from "@/components/news";
 import TargetCursor from "@/components/TargetCursor";
 import { usePageTitle } from "@/hooks/usePageTitle";
 import { getArticlesByType, type NewsItem } from "@/lib/articles";
@@ -16,8 +11,6 @@ function NewsPage() {
 	window.scrollTo({ top: 0, behavior: "instant" });
 
 	const [activeTab, setActiveTab] = useState<TabType>("domestic");
-	const [selectedArticle, setSelectedArticle] = useState<NewsItem | null>(null);
-	const [isModalOpen, setIsModalOpen] = useState(false);
 	const [articles, setArticles] = useState<NewsItem[]>([]);
 	const [loading, setLoading] = useState(true);
 
@@ -41,16 +34,6 @@ function NewsPage() {
 
 	const handleTabChange = (tab: TabType) => {
 		setActiveTab(tab);
-	};
-
-	const handleArticleClick = (article: NewsItem) => {
-		setSelectedArticle(article);
-		setIsModalOpen(true);
-	};
-
-	const handleModalClose = () => {
-		setIsModalOpen(false);
-		setSelectedArticle(null);
 	};
 
 	const handleLoadMore = () => {
@@ -87,22 +70,10 @@ function NewsPage() {
 				/>
 
 				{/* News Grid */}
-				<NewsGrid
-					articles={articles}
-					loading={loading}
-					activeTab={activeTab}
-					onArticleClick={handleArticleClick}
-				/>
+				<NewsGrid articles={articles} loading={loading} activeTab={activeTab} />
 
 				{/* Load More Section */}
 				<NewsLoadMore onLoadMore={handleLoadMore} />
-
-				{/* Article Modal */}
-				<NewsModal
-					article={selectedArticle}
-					isOpen={isModalOpen}
-					onClose={handleModalClose}
-				/>
 			</div>
 		</main>
 	);

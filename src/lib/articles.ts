@@ -63,31 +63,19 @@ function parseFrontMatter(content: string): {
 	};
 }
 
-// 記事ファイルを静的にインポート
-import domestic001 from "@/assets/articles/domestic-001.md?raw";
-import domestic002 from "@/assets/articles/domestic-002.md?raw";
-import global001 from "@/assets/articles/global-001.md?raw";
-import insights001 from "@/assets/articles/insights-001.md?raw";
-import insights002 from "@/assets/articles/insights-002.md?raw";
-import lab001 from "@/assets/articles/lab-001.md?raw";
-import lab002 from "@/assets/articles/lab-002.md?raw";
+// 全記事を動的にインポート
+const articleModules = import.meta.glob<string>("@/assets/articles/*.md", {
+	query: "?raw",
+	import: "default",
+	eager: true,
+});
 
 // 全記事を読み込む関数
 export async function loadAllArticles(): Promise<NewsItem[]> {
 	try {
-		const articleContents = [
-			domestic001,
-			domestic002,
-			global001,
-			insights001,
-			insights002,
-			lab001,
-			lab002,
-		];
-
 		const articles: NewsItem[] = [];
 
-		for (const content of articleContents) {
+		for (const [path, content] of Object.entries(articleModules)) {
 			try {
 				const { frontMatter, content: articleContent } =
 					parseFrontMatter(content);
@@ -97,7 +85,7 @@ export async function loadAllArticles(): Promise<NewsItem[]> {
 					content: articleContent,
 				});
 			} catch (error) {
-				console.error("Error parsing article:", error);
+				console.error(`Error parsing article at ${path}:`, error);
 			}
 		}
 
@@ -115,4 +103,10 @@ export async function loadAllArticles(): Promise<NewsItem[]> {
 export async function getArticlesByType(type: TabType): Promise<NewsItem[]> {
 	const allArticles = await loadAllArticles();
 	return allArticles.filter((article) => article.type === type);
+}
+
+// IDで記事を取得する関数
+export async function getArticleById(id: string): Promise<NewsItem | null> {
+	const allArticles = await loadAllArticles();
+	return allArticles.find((article) => article.id === id) || null;
 }

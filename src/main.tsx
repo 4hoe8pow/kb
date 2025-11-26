@@ -14,6 +14,7 @@ import HeroPage from "./routes/HeroPage.tsx";
 const HowToPlayPage = lazy(() => import("./routes/HowToPlayPage.tsx"));
 const HisroryPage = lazy(() => import("./routes/HistoryPage.tsx"));
 const NewsPage = lazy(() => import("./routes/NewsPage.tsx"));
+const NewsArticlePage = lazy(() => import("./routes/NewsArticlePage.tsx"));
 const LegalPage = lazy(() => import("./routes/LegalPage.tsx"));
 const PrivacyPage = lazy(() => import("./routes/PrivacyPage.tsx"));
 const NotFound = lazy(() => import("./components/NotFound"));
@@ -32,6 +33,7 @@ createRoot(root).render(
 							<Route path="how-to-play" element={<HowToPlayPage />} />
 							<Route path="history" element={<HisroryPage />} />
 							<Route path="news" element={<NewsPage />} />
+							<Route path="news/:articleId" element={<NewsArticlePage />} />
 							<Route path="legal" element={<LegalPage />} />
 							<Route path="privacy" element={<PrivacyPage />} />
 							<Route path="*" element={<NotFound />} />
