@@ -4,6 +4,28 @@ import tailwindcss from "@tailwindcss/vite"
 import { defineConfig } from "vite"
 import { compression } from 'vite-plugin-compression2'
 import { visualizer } from 'rollup-plugin-visualizer'
+import sitemap from 'vite-plugin-sitemap'
+import fs from 'fs'
+import matter from 'gray-matter'
+
+// 記事IDを動的に取得する関数
+function getArticleIds(): string[] {
+  const articlesDir = path.resolve(__dirname, './src/assets/articles')
+  try {
+    const files = fs.readdirSync(articlesDir)
+    return files
+      .filter(file => file.endsWith('.md'))
+      .map(file => {
+        const content = fs.readFileSync(path.join(articlesDir, file), 'utf-8')
+        const { data } = matter(content)
+        return data.id as string
+      })
+      .filter(Boolean)
+  } catch (error) {
+    console.warn('Failed to read articles directory:', error)
+    return []
+  }
+}
 
 export default defineConfig({
   plugins: [
@@ -20,6 +42,14 @@ export default defineConfig({
       filename: 'dist/stats.html',
       gzipSize: true,
       brotliSize: true,
+    }),
+    // Sitemap生成
+    sitemap({
+      hostname: 'https://anklehold.jocarium.productions',
+      dynamicRoutes: getArticleIds().map(id => `/news/${id}`),
+      exclude: ['/404'],
+      changefreq: 'weekly',
+      priority: 0.7,
     }),
   ].filter(Boolean),
   resolve: {
