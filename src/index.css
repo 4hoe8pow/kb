@@ -255,6 +255,11 @@
 		display: none;
 	}
 
+	/* カスタムボーダー幅 */
+	.border-3 {
+		border-width: 3px;
+	}
+
 	/* カスタムアニメーション定義 */
 	@keyframes scroll-left {
 		from {
@@ -312,5 +317,26 @@
 		50% {
 			box-shadow: 0 0 30px rgba(var(--primary), 0.6);
 		}
+	}
+
+	/* テキストグラデーション */
+	.text-gradient {
+		background: linear-gradient(135deg, #f59e0b 0%, #ef4444 50%, #6366f1 100%);
+		-webkit-background-clip: text;
+		-webkit-text-fill-color: transparent;
+		background-clip: text;
+	}
+
+	/* グラスモーフィズム */
+	.glass {
+		background: rgba(255, 255, 255, 0.1);
+		backdrop-filter: blur(10px);
+		-webkit-backdrop-filter: blur(10px);
+	}
+
+	.glass-dark {
+		background: rgba(0, 0, 0, 0.2);
+		backdrop-filter: blur(10px);
+		-webkit-backdrop-filter: blur(10px);
 	}
 }

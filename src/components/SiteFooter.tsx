@@ -32,7 +32,7 @@ export const SiteFooter = () => {
 			`}</style>
 
 			{/* 3段組グリッドレイアウトのフッター with silver ratio spacing */}
-			<footer className="relative overflow-hidden border-t font-dramatic backdrop-blur-xs bg-background/80 w-full text-foreground">
+			<footer className="relative overflow-hidden border-t font-dramatic bg-background w-full text-foreground">
 				<div className="footer-container relative z-10 w-full grid grid-cols-[1fr_auto_1fr]">
 					{/* 左カラム（ブランド & ナビゲーション） */}
 					<div

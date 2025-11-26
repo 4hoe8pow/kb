@@ -17,6 +17,9 @@ const NewsPage = lazy(() => import("./routes/NewsPage.tsx"));
 const NewsArticlePage = lazy(() => import("./routes/NewsArticlePage.tsx"));
 const LegalPage = lazy(() => import("./routes/LegalPage.tsx"));
 const PrivacyPage = lazy(() => import("./routes/PrivacyPage.tsx"));
+const KitanHellKabaddiPage = lazy(
+	() => import("./routes/KitanHellKabaddiPage.tsx"),
+);
 const NotFound = lazy(() => import("./components/NotFound"));
 
 const root = document.getElementById("root");
@@ -36,6 +39,10 @@ createRoot(root).render(
 							<Route path="news/:articleId" element={<NewsArticlePage />} />
 							<Route path="legal" element={<LegalPage />} />
 							<Route path="privacy" element={<PrivacyPage />} />
+							<Route
+								path="special/animation"
+								element={<KitanHellKabaddiPage />}
+							/>
 							<Route path="*" element={<NotFound />} />
 						</Route>
 					</Routes>
